@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F03%2F21%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start Create a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    <title><![CDATA[一些有趣的命令]]></title>
+    <url>%2F2019%2F03%2F17%2Fpost-2%2F</url>
+    <content type="text"><![CDATA[1234567cmatrix -b -Ccyanfactorfor i in &#123;1..5&#125;;do echo `fortune`|cowsay|lolcat;donefuck]]></content>
       <categories>
-        <category>Linux</category>
-        <category>Hexo</category>
-        <category>Tools</category>
-        <category>PHP</category>
+        <category>日常</category>
       </categories>
       <tags>
-        <tag>poi</tag>
-        <tag>ooi</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Test]]></title>
-    <url>%2F2019%2F03%2F21%2Ftest%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[Ubuntu 利用 tar 进行备份]]></title>
+    <url>%2F2019%2F03%2F10%2Fpost-1%2F</url>
+    <content type="text"><![CDATA[备份12345sudo sucd /tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz \--exclude=/mnt --exclude=/sys --exclude=/media / c - 新建一个文档v - 详细模式， tar程序将在屏幕上实时输出所有信息p - 保存许可，并应用到所有文件z - 采用‘gzip’压缩备份文件，以减小备份文件体积f - 说明备份文件存放的路径，backup.tgz “/“ 是我们要备份的目录，在这里是整个文件系统。 在备份命令结束时可能会看到这样一个提示：’tar: Error exit delayed from previous errors’，多数情况下可以忽略 还原如果原来的Ubuntu系统已经崩溃，无法进入。则可以使用Ubuntu安装U盘（live USB）进入试用Ubuntu界面。切换到root用户，找到之前Ubuntu系统的根目录所在磁盘分区（一般电脑上的磁盘分区（假设分区名称为sdaX）均可以在当前Ubuntu系统的根目录下的media目录下（即/media）找到。目录通常为当前根目录下 cd /media/磁盘名称/分区名称）。1234567891011进入分区，输入以下指令来删除该根目录下的所有文件：$ sudo rm -rf /media/磁盘名称/分区名称*将备份文件”backup.tgz”拷入该分区；$ sudo cp -i backup.tgz /media/磁盘名/分区名sdaX进入分区并将压缩文件解压缩，参数x是告诉tar程序解压缩备份文件。$ sudo tar xvpfz backup.tgz重新创建那些在备份时被排除在外的目录；$ sudo mkdir proc lost+found mnt sys media 重启 &gt;_]]></content>
       <categories>
-        <category>Linux</category>
-        <category>Hexo</category>
-        <category>NexT</category>
-        <category>C</category>
+        <category>运维</category>
       </categories>
       <tags>
-        <tag>poi,koi</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ありがとう - 东方歴絵巻(幽闭サテライト×白狐茶会)]]></title>
+    <url>%2F2019%2F02%2F19%2Fpost%2F</url>
+    <content type="text"><![CDATA[この目で計れない霞む過去や未来は触れられぬ事実となり、また幻になるだろう神などいるのでしょうか信じてみたけれど都合良いものじゃないとつい忘れてしまった 亡き者を想えば悲しいのだけど安心できる見返りなどいらぬそんな矛盾 愛の歴史 行く当てなどないでしょうそれでも 無意味では無い「ありがとう」 この身体生まれてきたよ優しい気持ちはすぐに忘れがちだけれども「ありがとう」 この気持ち心に刻んだよ 善人にはなれぬ気付いたのさ いつしかできるだけ清々しい生き方で良い気がする 行く当てなどないでしょうそれでも 無意味では無い「ありがとう」 この身体生まれてきたよ優しい気持ちはすぐに忘れがちだけれども「ありがとう」 この気持ち忘れたくない貴方を想うと心が洗われてゆく「ありがとう、おやすみ」この足で歩くよ]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>音乐</tag>
+        <tag>东方</tag>
       </tags>
   </entry>
 </search>
