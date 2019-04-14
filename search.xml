@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[一些有趣的命令]]></title>
+    <title><![CDATA[Linux 配置]]></title>
     <url>%2F2019%2F03%2F17%2Fpost-2%2F</url>
-    <content type="text"><![CDATA[1234567cmatrix -b -Ccyanfactorfor i in &#123;1..5&#125;;do echo `fortune`|cowsay|lolcat;donefuck]]></content>
+    <content type="text"><![CDATA[Mysql 备份和恢复123mysqldump -uroot -p -P3306 --databases ikazuchi &gt; ika.sqlmysql -uroot -p ikazuchi &lt; ika.sql 一些有趣的命令1234567cmatrix -b -Ccyanfactorfor i in &#123;1..5&#125;;do echo `fortune`|cowsay|lolcat;donefuck]]></content>
       <categories>
-        <category>日常</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>Linux</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
