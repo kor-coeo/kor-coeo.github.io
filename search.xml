@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Linux 配置]]></title>
+    <title><![CDATA[OpenWrt -- 利用 SDK 进行交叉编译]]></title>
+    <url>%2F2019%2F04%2F17%2Fpost-3%2F</url>
+    <content type="text"><![CDATA[安装SDK 到OpenWrt官网下载对应的SDK包：https://downloads.openwrt.org/releases/17.01.4/targets/x86/64/ 文件名大概长这样：lede-sdk-17.01.4-x86-64_gcc-5.4.0_musl-1.1.16.Linux-x86_64.tar.xz 解压到合适的地方，配置环境变量： 123export OWRT=/home/coeo/IDE/openwrt-sdk/staging_dir/toolchain-x86_64_gcc-5.4.0_musl-1.1.16/binexport STAGING_DIR=/home/coeo/IDE/openwrt-sdk/staging_direxport PATH=$OWRT:$PATH 检查是否配置成功： 123source ~/.zshrc然后应该可以自动补全：x86_64-openwrt-linux-gcc 编译直接编译成可执行文件，然后使用scp上传至路由器。 环境依赖123sudo apt install subversion g++ zlib1g-dev build-essential git python timesudo apt install libncurses5-dev gawk gettext unzip file libssl-dev wgetsudo apt install libelf-dev 添加函数库如果有用到函数库，需要注意SDK是否支持对应的库。比如下面会用到libpcap和mysql，但是SDK里并没有预装。到SDK根目录下： 更新包目录(要先把上面的依赖装好)./scripts/feeds update -a 安装指定包（仅含配置文件）./scripts/feeds install libpcap./scripts/feeds install mysql-server 编译包make package/libpcap/compilemake package/mysql/compile Makefile123456789101112131415161718192021222324252627OBJS = rls.o main.oTAR = o.oCC = x86_64-openwrt-linux-gccTOPDIR = /home/coeo/IDE/openwrt-sdkLDFLAGS += -L$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/lib/LDFLAGS += -L$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/lib/mysql/LIBS += -lmysqlclient -lpthread -lz -lm -lrt -latomic -ldl -lpcapCFLAGS += -I$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/include/CFLAGS += -I$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/include/mysql/CFLAGS += -I$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/include/pcap/$(TAR) : $(OBJS) $(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) $(OBJS) -o $(TAR)main.o : Main.c $(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) -c Main.c -o main.orls.o : ReLitSniffer.h ReLitSniffer.c $(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) -c ReLitSniffer.c -o rls.o.PHONY : cleanclean : rm $(TAR) $(OBJS) VMWare 安装 OpenWrt原文由于原版的镜像比较小，可能会有进行扩展的需要 准备一个Ubuntu 虚拟机 挂载到Ubuntu虚拟机（IDE格式），并扩展到所需的大小 使用fdisk -l找到挂载过来的磁盘 比如是/dev/sda，然后就用fdisk /dev/sda 12345678910p(记住第二个分区的起点)d(删除节点)2n(新建)p(分区类型：主分区)2原来分区的起点分区终点(默认)nw umount /dev/sda2 e2fsck -f /dev/sda2 resize2fs /dev/sda2]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 运维]]></title>
     <url>%2F2019%2F03%2F17%2Fpost-2%2F</url>
-    <content type="text"><![CDATA[Mysql 备份和恢复123mysqldump -uroot -p -P3306 --databases ikazuchi &gt; ika.sqlmysql -uroot -p ikazuchi &lt; ika.sql 一些有趣的命令1234567cmatrix -b -Ccyanfactorfor i in &#123;1..5&#125;;do echo `fortune`|cowsay|lolcat;donefuck]]></content>
+    <content type="text"><![CDATA[Mysql 备份和恢复123mysqldump -uroot -p -P3306 --databases ikazuchi &gt; ika.sqlmysql -uroot -p ikazuchi &lt; ika.sql]]></content>
       <categories>
         <category>运维</category>
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Ubuntu 利用 tar 进行备份]]></title>
+    <title><![CDATA[记 一个强迫症患者 对 重装系统 的 执着]]></title>
     <url>%2F2019%2F03%2F10%2Fpost-1%2F</url>
-    <content type="text"><![CDATA[备份12345sudo sucd /tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz \--exclude=/mnt --exclude=/sys --exclude=/media / c - 新建一个文档v - 详细模式， tar程序将在屏幕上实时输出所有信息p - 保存许可，并应用到所有文件z - 采用‘gzip’压缩备份文件，以减小备份文件体积f - 说明备份文件存放的路径，backup.tgz “/“ 是我们要备份的目录，在这里是整个文件系统。 在备份命令结束时可能会看到这样一个提示：’tar: Error exit delayed from previous errors’，多数情况下可以忽略 还原如果原来的Ubuntu系统已经崩溃，无法进入。则可以使用Ubuntu安装U盘（live USB）进入试用Ubuntu界面。切换到root用户，找到之前Ubuntu系统的根目录所在磁盘分区（一般电脑上的磁盘分区（假设分区名称为sdaX）均可以在当前Ubuntu系统的根目录下的media目录下（即/media）找到。目录通常为当前根目录下 cd /media/磁盘名称/分区名称）。1234567891011进入分区，输入以下指令来删除该根目录下的所有文件：$ sudo rm -rf /media/磁盘名称/分区名称*将备份文件”backup.tgz”拷入该分区；$ sudo cp -i backup.tgz /media/磁盘名/分区名sdaX进入分区并将压缩文件解压缩，参数x是告诉tar程序解压缩备份文件。$ sudo tar xvpfz backup.tgz重新创建那些在备份时被排除在外的目录；$ sudo mkdir proc lost+found mnt sys media 重启 &gt;_]]></content>
+    <content type="text"><![CDATA[配置开发环境gcc g++ libpcap java ipython zsh onmyzsh 开发工具vim atom git workbench Python包scapy matplotlib pymysql 软件工具rime mozcchrome梯子wireshark 主题配置gnome-tweak-toolnumix-gtk-themedockdynamic-top-barfreon 快捷方式sudo ln -sT /home/user_name/folder/ /home/user_name/desktop/folder 一些有趣的命令1234567cmatrix -b -Ccyanfactorfor i in &#123;1..5&#125;;do echo `fortune`|cowsay|lolcat;donefuck 备份12345sudo sucd /tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz \--exclude=/mnt --exclude=/sys --exclude=/media / c - 新建一个文档v - 详细模式， tar程序将在屏幕上实时输出所有信息p - 保存许可，并应用到所有文件z - 采用‘gzip’压缩备份文件，以减小备份文件体积f - 说明备份文件存放的路径，backup.tgz “/“ 是我们要备份的目录，在这里是整个文件系统 在备份命令结束时可能会看到这样一个提示：’tar: Error exit delayed from previous errors’，多数情况下可以忽略 还原如果原来的Ubuntu系统已经崩溃，无法进入。则可以使用Ubuntu安装U盘（live USB）进入试用Ubuntu界面。切换到root用户，找到之前Ubuntu系统的根目录所在磁盘分区，一般为/dev/sdaX。1234567891011121314先把它挂载出来：sudo mount /dev/sdaX /mnt/sdaX删除该根目录下的所有文件：sudo rm -rf /mnt/sdaX将备份文件”backup.tgz”拷入该分区：sudo cp backup.tgz /mnt/sdaX进入分区并将压缩文件解压缩，参数x是告诉tar程序解压文件。sudo tar xvpfz backup.tgz重新创建那些在备份时被排除在外的目录：sudo mkdir proc lost+found mnt sys media 重启 &gt;_]]></content>
       <categories>
         <category>运维</category>
       </categories>
