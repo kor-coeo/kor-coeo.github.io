@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[从〇开始的Java学习]]></title>
+    <url>%2F2019%2F07%2F09%2Fpost-6%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[vim 配置]]></title>
     <url>%2F2019%2F04%2F21%2Fpost-5%2F</url>
     <content type="text"><![CDATA[……好吧，有现成的。指路 –&gt; vimplus]]></content>
@@ -49,7 +60,7 @@
   <entry>
     <title><![CDATA[记 一个强迫症患者 对 重装系统 的 执着]]></title>
     <url>%2F2019%2F03%2F10%2Fpost-1%2F</url>
-    <content type="text"><![CDATA[配置开发环境gcc g++ libpcap java ipython zsh onmyzsh 开发工具vim atom git workbench Python包scapy matplotlib pymysql 软件工具rime mozcchrome梯子wireshark 主题配置gnome-tweak-toolnumix-gtk-themedockdynamic-top-barfreon 快捷方式sudo ln -sT /home/user_name/folder/ /home/user_name/desktop/folder 一些有趣的命令1234567cmatrix -b -Ccyanfactorfor i in &#123;1..5&#125;;do echo `fortune`|cowsay|lolcat;donefuck 备份12345sudo sucd /tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz \--exclude=/mnt --exclude=/sys --exclude=/media / c - 新建一个文档v - 详细模式， tar程序将在屏幕上实时输出所有信息p - 保存许可，并应用到所有文件z - 采用‘gzip’压缩备份文件，以减小备份文件体积f - 说明备份文件存放的路径，backup.tgz “/“ 是我们要备份的目录，在这里是整个文件系统 在备份命令结束时可能会看到这样一个提示：’tar: Error exit delayed from previous errors’，多数情况下可以忽略 还原如果原来的Ubuntu系统已经崩溃，无法进入。则可以使用Ubuntu安装U盘（live USB）进入试用Ubuntu界面。切换到root用户，找到之前Ubuntu系统的根目录所在磁盘分区，一般为/dev/sdaX。1234567891011121314先把它挂载出来：sudo mount /dev/sdaX /mnt/sdaX删除该根目录下的所有文件：sudo rm -rf /mnt/sdaX将备份文件”backup.tgz”拷入该分区：sudo cp backup.tgz /mnt/sdaX进入分区并将压缩文件解压缩，参数x是告诉tar程序解压文件。sudo tar xvpfz backup.tgz重新创建那些在备份时被排除在外的目录：sudo mkdir proc lost+found mnt sys media 重启 &gt;_]]></content>
+    <content type="text"><![CDATA[配置开发环境gcc g++ libpcap java ipython zsh onmyzsh 开发工具vim atom git workbench Python包scapy matplotlib pymysql 软件工具rime mozcchrome梯子wireshark 主题配置gnome-tweak-toolnumix-gtk-themedockdynamic-top-barfreon 快捷方式sudo ln -sT /home/user_name/folder/ /home/user_name/desktop/folder 一些有趣的命令1234567cmatrix -b -Ccyanfactorfor i in &#123;1..5&#125;;do echo `fortune`|cowsay|lolcat;donefuck 挂起、后台执行alias ecp=nohup ./home/coeo/IDE/eclipse/eclipse &amp; 备份12345sudo sucd /tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz \--exclude=/mnt --exclude=/sys --exclude=/media / c - 新建一个文档v - 详细模式， tar程序将在屏幕上实时输出所有信息p - 保存许可，并应用到所有文件z - 采用‘gzip’压缩备份文件，以减小备份文件体积f - 说明备份文件存放的路径，backup.tgz “/“ 是我们要备份的目录，在这里是整个文件系统 在备份命令结束时可能会看到这样一个提示：’tar: Error exit delayed from previous errors’，多数情况下可以忽略 还原如果原来的Ubuntu系统已经崩溃，无法进入。则可以使用Ubuntu安装U盘（live USB）进入试用Ubuntu界面。切换到root用户，找到之前Ubuntu系统的根目录所在磁盘分区，一般为/dev/sdaX。1234567891011121314先把它挂载出来：sudo mount /dev/sdaX /mnt/sdaX删除该根目录下的所有文件：sudo rm -rf /mnt/sdaX将备份文件”backup.tgz”拷入该分区：sudo cp backup.tgz /mnt/sdaX进入分区并将压缩文件解压缩，参数x是告诉tar程序解压文件。sudo tar xvpfz backup.tgz重新创建那些在备份时被排除在外的目录：sudo mkdir proc lost+found mnt sys media 重启 &gt;_]]></content>
       <categories>
         <category>运维</category>
       </categories>
