@@ -409,12 +409,24 @@
                 
               
 
-              <time title="创建时间：2019-07-09 15:07:24 / 修改时间：15:10:18" itemprop="dateCreated datePublished" datetime="2019-07-09T15:07:24+08:00">2019-07-09</time>
+              <time title="创建时间：2019-07-09 15:07:24" itemprop="dateCreated datePublished" datetime="2019-07-09T15:07:24+08:00">2019-07-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-10 12:05:33" itemprop="dateModified" datetime="2019-07-10T12:05:33+08:00">2019-07-10</time>
               
             
           </span>
@@ -481,7 +493,47 @@
       
         
           
-            
+            <h2 id="Java-语言基础"><a href="#Java-语言基础" class="headerlink" title="Java 语言基础"></a>Java 语言基础</h2><ul>
+<li>pubilc static void main (String[] args){}</li>
+<li>final 定义时赋初始值</li>
+<li>类名.静态变量</li>
+<li>浮点类型： float 12.25f（默认为double，所以要加f or F）（double 可选加D、d）</li>
+<li>boolean</li>
+<li>整数 负数的第一位为1，补码</li>
+</ul>
+<p><em>变量范围，所在 { } 内？static，往外一层？</em></p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<li>赋值 =　⬅　＝　⬅</li>
+<li>逻辑运算：与 （&amp;&amp; 先判断左边的 or &amp; ） 或 （||） 非 （！）</li>
+<li>位运算 与&amp; 或| 取反~ 异^（指数运算得用函数）</li>
+<li>移位 &lt;&lt;（补0） &gt;&gt;(第一位为1则补1) &gt;&gt;&gt;（都补0）</li>
+<li>三元运算符 条件式？true：false；</li>
+<li>显式（强制）类型转换 int a = (int)45.</li>
+</ul>
+<h3 id="注释与编码规范"><a href="#注释与编码规范" class="headerlink" title="注释与编码规范"></a>注释与编码规范</h3><h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><ul>
+<li>//单行</li>
+<li>/<em>  </em>/</li>
+<li>/*<em> </em>/ 文档注释 Javadoc</li>
+</ul>
+<h4 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h4><ul>
+<li>命令要 ； 结尾</li>
+</ul>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><ul>
+<li>可以利用{}创建局部变量作用域<h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if()&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125; else if()&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单句可省略{}</p>
+<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><p>可为字符串类型</p>
+<h4 id="while-for-foreach-指-for（-x-arr"><a href="#while-for-foreach-指-for（-x-arr" class="headerlink" title="while for | foreach 指 for（ x; arr)"></a>while for | foreach 指 for（ x; arr)</h4><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>String str (未初始化 == null)</p>
+<ul>
+<li>连接： String s = strA + “ “ + strB + oneInt;</li>
+<li>== 比较的是地址， str.equals(otherStr)</li>
+<li>创建的字符串，内容不可修改（频繁申请和销毁内存空间)</li>
+<li>易变： StringBuffer（线程安全） 和 StringBuilder（快）</li>
+</ul>
+<h4 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String fs;</span><br><span class="line">fs = String.format(&quot;浮点型变量的值为 &quot; +</span><br><span class="line">                   &quot;%f, 整型变量的值为 &quot; +</span><br><span class="line">                   &quot; %d, 字符串变量的值为 &quot; +</span><br><span class="line">                   &quot; %s&quot;, floatVar, intVar, stringVar);</span><br></pre></td></tr></table></figure>
+<h4 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String regex=&quot;.....&quot;;</span><br><span class="line">str.matches(regex);</span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2>
           
         
       

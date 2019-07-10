@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[从〇开始的Java学习]]></title>
     <url>%2F2019%2F07%2F09%2Fpost-6%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[Java 语言基础 pubilc static void main (String[] args){} final 定义时赋初始值 类名.静态变量 浮点类型： float 12.25f（默认为double，所以要加f or F）（double 可选加D、d） boolean 整数 负数的第一位为1，补码 变量范围，所在 { } 内？static，往外一层？ 运算符 赋值 = ⬅ ＝ ⬅ 逻辑运算：与 （&amp;&amp; 先判断左边的 or &amp; ） 或 （||） 非 （！） 位运算 与&amp; 或| 取反~ 异^（指数运算得用函数） 移位 &lt;&lt;（补0） &gt;&gt;(第一位为1则补1) &gt;&gt;&gt;（都补0） 三元运算符 条件式？true：false； 显式（强制）类型转换 int a = (int)45. 注释与编码规范注释 //单行 / / /* / 文档注释 Javadoc 规范 命令要 ； 结尾 流程控制 可以利用{}创建局部变量作用域if 1234567if()&#123; ...&#125; else if()&#123; ...&#125; else &#123; ...&#125; 单句可省略{} switch可为字符串类型 while for | foreach 指 for（ x; arr)字符串String str (未初始化 == null) 连接： String s = strA + “ “ + strB + oneInt; == 比较的是地址， str.equals(otherStr) 创建的字符串，内容不可修改（频繁申请和销毁内存空间) 易变： StringBuffer（线程安全） 和 StringBuilder（快） 格式化12345String fs;fs = String.format(&quot;浮点型变量的值为 &quot; + &quot;%f, 整型变量的值为 &quot; + &quot; %d, 字符串变量的值为 &quot; + &quot; %s&quot;, floatVar, intVar, stringVar); 正则12String regex=&quot;.....&quot;;str.matches(regex); 数组]]></content>
       <categories>
         <category>开发</category>
       </categories>
