@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring poi >_]]></title>
+    <url>%2F2019%2F07%2F22%2Fpost-9%2F</url>
+    <content type="text"><![CDATA[Terms 依赖注入（DI，Dependency Injection）依赖注入是控制反转的一个具体的例子。 控制反转（IoC，Inversion of Control） 面向切片的程序设计（AOP，Aspect Oriented Programming）在 OOP 中模块化的关键单元是类，而在 AOP 中模块化的关键单元是方面。 ORM，Object Relational Mapping OXM，Object XML Mapping JPA，Java Persistence API，Java持久层API JSP，Java Server Pages or Servlet CGI，Common Gateway Interface，通用网关接口 POJO，Plain Ordinary Java Object，平滑简单的Java对象，一般只有一些属性和get、set、is方法，没有复杂的业务逻辑、方法，有时可以作为VO(value -object)或DTO(Data Transform Object)来使用 PO，Persistent Object，持久对象 DAO，Data Access Object，数据访问对象 Spring Beans写在xml文件里,get、set必须和属性对应 三种获得途径 本地绝对路径，FileSystemXmlApplicationContext CLASSPATH，ClassPathXmlApplicationContext Web路径，WebXmlApplicationContext 作用域 Scopes singleton 单例 prototype 原型，即不是单例 其他，Web相关：request，session，global-session 生命周期 Life Cycle 可选 init-method or destroy-method Bean 后置处理器 允许在调用 初始化方法 前后 对 Bean 进行额外的处理。 继承 or 模板 abstract=”true” parent=”beanTeamplate” 依赖注入 DI constructor-arg property12345678910111213141516一般， new Obj：public class TextEditor &#123; private SpellChecker spellChecker; public TextEditor() &#123; spellChecker = new SpellChecker(); &#125;&#125;IoC， 传参：public class TextEditor &#123; private SpellChecker spellChecker; public TextEditor(SpellChecker spellChecker) &#123; this.spellChecker = spellChecker; &#125;&#125;ps： 问题场景 --&gt; 依赖类 构造方法带参数 or 可变。非 IoC 需要在自身内部变动。 基于构造函数 &lt;constructor-arg ref=&quot;spellChecker&quot;/&gt; 多个参数，按序或者指定index value：传值（基本类型），ref：引用（对象） 基于 setter &lt;property name=&quot;spellChecker&quot; ref=&quot;spellChecker&quot;/&gt; 严格要有一个 setObjxxx(…) 方法ps: &lt;property name=&quot;..&quot; (value or ref)=&quot;..&quot;/&gt; 可简写为 p:..=&quot;..&quot; or p:..-ref=&quot;..&quot; value Of 集合： list set map props 自动装配 autowire byName byType constructor (对构造函数基于 参数 Type 匹配) autodetect (constructor –&gt; byType)ps：一般都是单例，一个类型只有一个，故可以 byType。针对非基本类型，即引用（bean）。 注解 初级 @Required 针对 setter 方法。可不写，编译时提示性作用，提示要xml。 @Autowired byType，针对整个类（bean）or 方法、属性。即 都可以。必须，如果 不写xml 的话。 @Qualifier 辅助 Autowired，有多个相同 Type 的 Bean 的生活。ps：@Autowired(required=false) 允许为 null 其他 @PostConstruct @PreDestroy 替代 xml 中的 init-method、destroy-method @Resource(name= “…”) byName，可以替代xml，（..）可省略、自动获取 高级，针对 Bean 的注解 @Configuration 修饰 类，指明该类是 Bean 的生成工厂（配置区域、定义来源、上下文、同xml）。 @Bean 修饰方法，该方法会返回一个 Bean（属性设置完毕，准备就绪的Obj），其 id 为 方法名。 @Import 导入 别的 @Configuration 上下文。ps：这样配置下的 Bean 相互依赖的话，不用进行额外的设置。 事件 Event of Context捕获和处理：class BeanExp implements ApplicationListener&lt;...Event&gt;一般有：ContextRefreshedEvent ContextStartedEvent ContextStoppedEvent ContextClosedEvent RequestHandledEvent 自定义事件12345671. 定义 Event：public class CustomEvent extends ApplicationEvent2. 发布 Event：implements ApplicationEventPublisherAware;ApplicationEventPublisher publisher;publisher.publishEvent(CustomEventObj); AOP]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java 开发笔记]]></title>
+    <url>%2F2019%2F07%2F11%2Fpost-8%2F</url>
+    <content type="text"><![CDATA[概念 serializable 序列化 使实例对象可存储、永久存在，方便恢复和复用]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java 核心技术 (◔౪◔)]]></title>
+    <url>%2F2019%2F07%2F10%2Fpost-7%2F</url>
+    <content type="text"><![CDATA[继承、接口、多态继承 super父类引用 super（）父类构造方法 equals（Object类方法）默认使用 == 需重写（覆盖） 重载 函数名相同，参数不同 向上转型（安全） 向下转型（先确认类型，然后显式转换，instanceof） 不定长参数方法: type fun(type…arg) == fun(type[] args) 接口 关键字 interface 纯粹的抽象类 对比多态（抽象方法） 父类可不抽象，部分子类可不实现 方法只能为 public abstract, 故省略 类的高级方法 类包 final方法 不可重写 final类 不能被继承 内部类 局部类 匿名类 异常处理try catch finally 反射Object类的一些方法 getName() 获得类的名称(是个String) getInterfaces() 获得接口 Class对象数组 getClass() Class对象 getConstructors() 为public的构造函数数组 用途：获得类的类型、成员变量、方法（可以是私密的） 多线程、网络通信、数据库操作]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[从〇开始的Java学习]]></title>
     <url>%2F2019%2F07%2F09%2Fpost-6%2F</url>
-    <content type="text"><![CDATA[Java 语言基础 pubilc static void main (String[] args){} final 定义时赋初始值 类名.静态变量 浮点类型： float 12.25f（默认为double，所以要加f or F）（double 可选加D、d） boolean 整数 负数的第一位为1，补码 变量范围，所在 { } 内？static，往外一层？ 运算符 赋值 = ⬅ ＝ ⬅ 逻辑运算：与 （&amp;&amp; 先判断左边的 or &amp; ） 或 （||） 非 （！） 位运算 与&amp; 或| 取反~ 异^（指数运算得用函数） 移位 &lt;&lt;（补0） &gt;&gt;(第一位为1则补1) &gt;&gt;&gt;（都补0） 三元运算符 条件式？true：false； 显式（强制）类型转换 int a = (int)45. 注释与编码规范注释 //单行 / / /* / 文档注释 Javadoc 规范 命令要 ； 结尾 流程控制可以利用{}创建局部变量作用域 if1234567if()&#123; ...&#125; else if()&#123; ...&#125; else &#123; ...&#125; 单句可省略{} switch可为字符串类型 while for | foreach 指 for（ x; arr)字符串String str (未初始化 == null) 连接： String s = strA + “ “ + strB + oneInt; == 比较的是地址， str.equals(otherStr) 创建的字符串，内容不可修改（频繁申请和销毁内存空间) 易变： StringBuffer（线程安全） 和 StringBuilder（快） 格式化12345String fs;fs = String.format(&quot;浮点型变量的值为 &quot; + &quot;%f, 整型变量的值为 &quot; + &quot; %d, 字符串变量的值为 &quot; + &quot; %s&quot;, floatVar, intVar, stringVar); 正则12String regex=&quot;.....&quot;;str.matches(regex); 数组]]></content>
+    <content type="text"><![CDATA[Java 语言基础 pubilc static void main (String[] args){} final 定义时赋初始值 类名.静态变量 浮点类型： float 12.25f（默认为double，所以要加f or F）（double 可选加D、d） boolean 整数 负数的第一位为1，补码 变量范围，所在 { } 内？static，往外一层？ 运算符 赋值 = ⬅ ＝ ⬅ 逻辑运算：与 （&amp;&amp; 先判断左边的 or &amp; ） 或 （||） 非 （！） 位运算 与&amp; 或| 取反~ 异^（指数运算得用函数） 移位 &lt;&lt;（补0） &gt;&gt;(第一位为1则补1) &gt;&gt;&gt;（都补0） 三元运算符 条件式？true：false； 显式（强制）类型转换 int a = (int)45. 注释与编码规范注释 //单行 / / /* / 文档注释 Javadoc 规范 命令要 ； 结尾 流程控制可以利用{}创建局部变量作用域 if1234567if()&#123; ...&#125; else if()&#123; ...&#125; else &#123; ...&#125; 单句可省略{} switch可为字符串类型 while for | foreach 指 for（ x; arr)字符串String str (未初始化 == null) 连接： String s = strA + “ “ + strB + oneInt; == 比较的是地址， str.equals(otherStr) 创建的字符串，内容不可修改（频繁申请和销毁内存空间) 易变： StringBuffer（线程安全） 和 StringBuilder（快） 格式化12345String fs;fs = String.format(&quot;浮点型变量的值为 &quot; + &quot;%f, 整型变量的值为 &quot; + &quot; %d, 字符串变量的值为 &quot; + &quot; %s&quot;, floatVar, intVar, stringVar); 正则12String regex=&quot;.....&quot;;str.matches(regex); 数组123456789int arrA[] = new int[]&#123;1,2.3&#125;;int arrB[] = &#123;1,1,2,2&#125;;int arrC[][] = new int[2][4];int arrD[][] = new int[2][];arrD[0] = new int[2];arrD[1] = new int[3];int arrE[][] = new int[][]&#123;&#123;1&#125;,&#123;2,3&#125;,&#123;4,5,6&#125;&#125;; 面向对象 类 实例化 —&gt; 对象 封装、继承、多态（使用父类方法、抽象函数、c++虚函数、可用接口替代） 类先写变量 后方法（定义和声明不分开） this 引用 静态方法不可使用this以及调用非静态方法 Java只能有静态类成员变量，没有方法中的静态局部变量 static{} 类初始化的 静态区域]]></content>
       <categories>
         <category>开发</category>
       </categories>
