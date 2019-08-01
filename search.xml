@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Thymeleaf]]></title>
+    <url>%2F2019%2F07%2F31%2Fpost-11%2F</url>
+    <content type="text"><![CDATA[引入&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt; 标签 th:text=”${description}” 表达式语法 变量表达式： ${…} 选择变量表达式： *{…} 信息表达式： #{…} 链接 URL 表达式： @{…} 分段表达式： ~{…}字面量 字符串： ‘one text’ 数字： 0, 34, 3.0 布尔值： true, false Null 值： null 字面量标记：one, sometext文本运算 字符串拼接： + 字面量置换: |The name is ${name}|比较运算 比较： &gt;, &lt;, &gt;=, &lt;= (gt, lt, ge, le) 相等运算符： ==, != (eq, ne)特殊语法 无操作： _]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Thymeleaf</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring boot]]></title>
     <url>%2F2019%2F07%2F25%2Fpost-10%2F</url>
-    <content type="text"><![CDATA[概要 习惯优先于配置 (前后端分离，可无视) 内嵌 Servlet 容器：Tomcat 、 Jetty 前后端分离 前端 &lt;– 跳转逻辑和页面交互 后端 只负责提供接口数据 RESTful api 前端工作更重，除非后端有复杂的算法设计 主要是易扩展 前后端可独立出来，中间是一般的 RESTful 交流。前端可选框架更多，VUE等，脱离Java，可使用 Nginx。 Maven mvn 类似 –&gt; npm编译、依赖、打包、运行、文档 AJAX Asynchronous JavaScript and XML（异步的 JavaScript 和 XML） 编程方法、标准、设计模式 RESTful apiRepresentational State Transfer 基本原则 URI，Universal Resource Identifier 尽量 全小写 尽量 不用 动词 集合 用 复数形式 HTTP 协议 动词 GET，获取 POST，新建 PUT，更新 完整的 PATCH，更新 部分属性 DELETE，删除资源 状态码 200 成功 401 无权限（用户行为错误） 5xx 服务器错误（拥塞..） 安全原则 Authentication 和 Permission 常用的认证机制是 Basic Auth 和 OAuth CORS，Cross-origin resource sharing 注解 @responseBody，将返回结果转化为 JSON or XML 后，填充到目标 body @Param，简化 MyBatis 中 mapper.xml 的配置 目录结构（开发结构）entityDao 数据连接对象 dao接口包 mapper 中基于 Mybatis 的 xml 对象（beans） Service 层 当项目的业务逻辑简单时，可选择service层=service类； 当项目的业务复杂时，可选择service层=service接口+serviceImpl实现类； Controller 层]]></content>
+    <content type="text"><![CDATA[概要 习惯优先于配置 (前后端分离，可无视) 内嵌 Servlet 容器：Tomcat 、 Jetty 前后端分离 前端 &lt;– 跳转逻辑和页面交互 后端 只负责提供接口数据 RESTful api 前端工作更重，除非后端有复杂的算法设计 主要是易扩展 前后端可独立出来，中间是一般的 RESTful 交流。前端可选框架更多，VUE等，脱离Java，可使用 Nginx。 Maven mvn 类似 –&gt; npm编译、依赖、打包、运行、文档 AJAX Asynchronous JavaScript and XML（异步的 JavaScript 和 XML） 编程方法、标准、设计模式 RESTful apiRepresentational State Transfer 基本原则 URI，Universal Resource Identifier 尽量 全小写 尽量 不用 动词 集合 用 复数形式 HTTP 协议 动词 GET，获取 POST，新建 PUT，更新 完整的 PATCH，更新 部分属性 DELETE，删除资源 状态码 200 成功 401 无权限（用户行为错误） 5xx 服务器错误（拥塞..） 安全原则 Authentication 和 Permission 常用的认证机制是 Basic Auth 和 OAuth CORS，Cross-origin resource sharing 注解 @responseBody，将返回结果转化为 JSON or XML 后，填充到目标 body @Param，简化 MyBatis 中 mapper.xml 的配置 事务 &amp; AOP声明式事务： xml @Transactional（其他：编程式事务）声明式事务是建立在 AOP 机制之上的，其本质是 **对方法前后进行拦截** 其他组件Redis日志型、Key-Value数据库 @Scheduled 实现定时任务入口 Application 需添加 @EnableScheduling SwaggerRESTful API文档、接口测试 @ApiOperation @ApiImplicitParams @ApiImplicitParamSpring Boot Admin资源、性能监控 @EnableAdminServer spring.boot.admin.client.url=http://localhost:port 目录结构（开发结构）entityDao 数据连接对象@Repository（一般不用，有xml） dao接口包 mapper 中基于 Mybatis 的 xml 对象（beans） Service 层@service 当项目的业务逻辑简单时，可选择service层=service类； 当项目的业务复杂时，可选择service层=service接口+serviceImpl实现类； Controller 层@Controller or @RestController（包含 @ResponseBody） @component普通的、一般的 Bean，如 定时任务 自定义路径映射SpringBootWebMvcConfigurerregistry.addResourceHandler(&quot;/files/**&quot;).addResourceLocations(&quot;file:/home/user/folder/&quot;); 项目配置application.properties 日志 logging.level.pkg.pkg=level logging.path/logging.file http服务 server.port=8082 spring.resources.static-locations=classpath:/folderA/,classpath:/folderB/ server.servlet.context-path=/shiyanlou/ 文件上传 MultipartResolver spring.servlet.multipart.max-file-size 数据库相关 mybatis.mapper-locations=classpath:mapper/*Dao.xml]]></content>
       <categories>
         <category>开发</category>
       </categories>
