@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Web 开发相关]]></title>
+    <url>%2F2019%2F08%2F05%2Fpost-16%2F</url>
+    <content type="text"><![CDATA[常见工具 SQL 注入 XSS 跨站脚本攻击 利用站点自身提供的入口，提交脚本 XSRF 跨站请求伪造 猜测和获取目标站点的验证信息（cookie），通过伪造的站点对目标进行攻击]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>安全</tag>
+        <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vue]]></title>
+    <url>%2F2019%2F08%2F05%2Fpost-15%2F</url>
+    <content type="text"><![CDATA[基础 12345678910111213141516171819var data = &#123; message: &apos;Hello Vue.js!&apos;, somethings: 111&#125;var app = new Vue(&#123; el: &apos;#app-5&apos;, data: data, methods: &#123; reverseMessage: function () &#123; this.message = this.message.split(&apos;&apos;).reverse().join(&apos;&apos;) &#125; &#125;&#125;)数据绑定： app.message == data.message Object.freeze(obj) Vue 对象基本构成 el： data： methods: computed: 技术属性 定义的是方法，引用的是属性（数据） 仅在依赖数据变更是调用方法更新，否则直接引用计算结果 watch: function (val){ val 是 变更的数据 } 在数据变动时调用 components: 标签 v-bind v-bind:title=”msg” v-bind:href=”url” v-bind:id=”dynamicId” v-bind=”obj”(直接传递整个 对象 ) 简写： :href 含义：这是一个 JavaScript 表达式而不是一个字符串。一般是 动态 的 v-if=”todo” v-for=”todo in todos” v-on:click=”func” 简写： @click .passive 立即触发,尤其能够提升移动端的性能 $emit v-model=”bind-value” 表单 vue 对象属性 vm.$el === document.getElementById(‘example’) vm.$watch(‘a’, ()=&gt;{…}) Hooks created updated destroyed 不要在选项属性或回调上使用箭头函数(就是在说上面那样的)，可能会有导致错误 组件12345678Vue.component(&apos;button-counter&apos;, &#123; data: function () &#123; return &#123; count: 0 &#125; &#125;, template: &apos;&lt;button v-on:click=&quot;count++&quot;&gt;You clicked me &#123;&#123; count &#125;&#125; times.&lt;/button&gt;&apos;&#125;) 基本构成 组件名 data 得是方法 js 变量 作用域 问题 props props:[‘koisi’] type type 还可以是一个自定义的构造函数 并且通过 instanceof 来进行检查确认 validator 自定义验证函数 template 完全替换(包括标签) 渲染函数 render 一般 template 就够了 vuex 数据源管理]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Node js]]></title>
+    <url>%2F2019%2F08%2F02%2Fpost-14%2F</url>
+    <content type="text"><![CDATA[基础异步 回调 例子 回调函数 回调函数 作为 请求函数 的 最后一个参数 回调函数的 第一个参数 为 err(错误对象)service( arg, (err , data) =&gt; { ... }) 事件 Node.js 是单进程单线程应用程序。通过 异步 实现 高并发。 观察者模式 var events = require(‘events’) 方法: on, emit Buffer 二进制模块 exports require 多进程其他全局变量 dirname 和 filename ES Modules 模块化为你提供了一种更好的方式来组织 变量（作用域）和 函数 常用包webpackGulp：手动编写配置步骤Webpack：自动从入口文件开始检查所有依赖 axios微型 HTTP 客户端。生成 和 接收 HTTP 请求。 mock测试工具]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Node</tag>
+        <tag>后端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RESTful API]]></title>
+    <url>%2F2019%2F08%2F02%2Fpost-13%2F</url>
+    <content type="text"><![CDATA[阮一峰 URL 设计 动词 + 宾语 GET /articles HTTP 方法： GET 获取 POST 新建 PUT 整体 更新 PATCH 部分 更新 DELETE 删除 X-HTTP-Method-Override 复数形式 GET /articles/2 避免多级 除了第一级，其他级别都用查询字符串表达 GET /authors/12/categories/2 GET /authors/12?categories=2 GET /articles/published GET /articles?published=true ? –&gt; 过滤器 状态码 1xx 相关信息 AJAX 里不涉及 2xx 成功 POST 201 创建成功 DELETE 204 资源已经不存在 202 已经收到请求，还未处理 异步 3xx 重定向 303 See Other 4xx 客户端错误 400 请求不明、错误 401 认证失败 405 权限不足 404 资源不存在 5xx 服务器错误 500 服务器出错了、怎么滴 503 维护 服务器回应 不要返回纯本文 Content-Type application/json 安全与幂等 安全 –&gt; 只读 幂等 –&gt; 可多次执行 POST 对某一对象，只能创建一次]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>RESTful</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Web 基础知识]]></title>
+    <url>%2F2019%2F08%2F02%2Fpost-12%2F</url>
+    <content type="text"><![CDATA[Terms CGI，Common Gateway Interface，通用网关接口 HTTP GET 和 POST get内容在URL中 get应该只用于 取回数据 post内容在http报头中Html5标签 !DOCTYPE html&gt; 声明为 HTML5 文档 h p(paragraph) a img&gt; /&gt; 文本格式化 定义粗体文本 定义着重文字 定义斜体字 定义小号字 定义加重语气 定义下标字 定义上标字 定义插入字 定义删除字 表格 Header 1 Header 2 row 2, cell 1 row 2, cell 2 无序列表CoffeeMilk 有序列表CoffeeMilk div(块级，会换行) span（内联元素，不换行） 表单 form input button iframe（src，a+target 属性 class id target=”_blank” 新页面中打开 141个颜色名称 xhtml基于 xml 编写规范的 html 新特性 新标签 header footer aside nav section canvas 多媒体 video audio CSS 3 存储 localStorage sessionStorage 应用级缓存 Application Cache html manifest=”demo.appcache” WebSocket 持久性的连接，允许服务端主动向客户端推送数据 通过 JavaScript JavaScript 基础基于 ECMAScript 规范 document 对象 innerHTML 基础 数组 [1,3,3] 对象 {a:123,b:”name”} 变量在函数外定义，即为全局变量。 JavaScript 闭包 函数内定义函数，解决没有 static 变量 jQuery 选择器 元素 $(“p”) id $(“#test”) class $(“.test”) 事件 效果、动画 AJAX AJAX用 JavaScript 操作、修改 DOM XMLHttpRequest 对象 Async=true 异步(事件:onreadystatechange) responseText/responseXML $.ajax({name:value, name:value, … })-]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>Http</tag>
+        <tag>html</tag>
+        <tag>AJAX</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Thymeleaf]]></title>
     <url>%2F2019%2F07%2F31%2Fpost-11%2F</url>
     <content type="text"><![CDATA[引入&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt; 标签 th:text=”${description}” 表达式语法 变量表达式： ${…} 选择变量表达式： *{…} 信息表达式： #{…} 链接 URL 表达式： @{…} 分段表达式： ~{…}字面量 字符串： ‘one text’ 数字： 0, 34, 3.0 布尔值： true, false Null 值： null 字面量标记：one, sometext文本运算 字符串拼接： + 字面量置换: |The name is ${name}|比较运算 比较： &gt;, &lt;, &gt;=, &lt;= (gt, lt, ge, le) 相等运算符： ==, != (eq, ne)特殊语法 无操作： _]]></content>
