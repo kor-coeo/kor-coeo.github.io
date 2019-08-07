@@ -103,25 +103,29 @@
 
 
 
-  <meta name="description" content="概要 习惯优先于配置 (前后端分离，可无视) 内嵌 Servlet 容器：Tomcat 、 Jetty">
-<meta name="keywords" content="Java,Spring">
+  <meta name="description" content="Tips目标可读性 可扩展 可维护 可靠性 安全性 性能">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring boot">
-<meta property="og:url" content="https://kor-coeo.github.io/2019/07/25/post-10/index.html">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="https://kor-coeo.github.io/2019/08/06/post-18/index.html">
 <meta property="og:site_name" content="蛍火の杜">
-<meta property="og:description" content="概要 习惯优先于配置 (前后端分离，可无视) 内嵌 Servlet 容器：Tomcat 、 Jetty">
+<meta property="og:description" content="Tips目标可读性 可扩展 可维护 可靠性 安全性 性能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-31T07:34:26.694Z">
+<meta property="og:image" content="https://kor-coeo.github.io/2019/08/06/post-18/adapter.png">
+<meta property="og:image" content="https://kor-coeo.github.io/2019/08/06/post-18/bridge.png">
+<meta property="og:image" content="https://kor-coeo.github.io/2019/08/06/post-18/bridge2.png">
+<meta property="og:image" content="https://kor-coeo.github.io/2019/08/06/post-18/decorator.png">
+<meta property="og:updated_time" content="2019-08-07T09:03:41.588Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring boot">
-<meta name="twitter:description" content="概要 习惯优先于配置 (前后端分离，可无视) 内嵌 Servlet 容器：Tomcat 、 Jetty">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="Tips目标可读性 可扩展 可维护 可靠性 安全性 性能">
+<meta name="twitter:image" content="https://kor-coeo.github.io/2019/08/06/post-18/adapter.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kor-coeo.github.io/2019/07/25/post-10/">
+  <link rel="canonical" href="https://kor-coeo.github.io/2019/08/06/post-18/">
 
 
 
@@ -131,7 +135,7 @@
   };
 </script>
 
-  <title>Spring boot | 蛍火の杜</title>
+  <title>设计模式 | 蛍火の杜</title>
   
 
   <noscript>
@@ -365,7 +369,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kor-coeo.github.io/2019/07/25/post-10/">
+    <link itemprop="mainEntityOfPage" href="https://kor-coeo.github.io/2019/08/06/post-18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kor coeo">
@@ -382,7 +386,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring boot
+          <h1 class="post-title" itemprop="name headline">设计模式
 
               
             
@@ -408,7 +412,7 @@
                 
               
 
-              <time title="创建时间：2019-07-25 10:51:15" itemprop="dateCreated datePublished" datetime="2019-07-25T10:51:15+08:00">2019-07-25</time>
+              <time title="创建时间：2019-08-06 11:10:51" itemprop="dateCreated datePublished" datetime="2019-08-06T11:10:51+08:00">2019-08-06</time>
             
 
             
@@ -425,29 +429,11 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-31 15:34:26" itemprop="dateModified" datetime="2019-07-31T15:34:26+08:00">2019-07-31</time>
+                <time title="修改时间：2019-08-07 17:03:41" itemprop="dateModified" datetime="2019-08-07T17:03:41+08:00">2019-08-07</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -461,8 +447,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/07/25/post-10/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/25/post-10/" itemprop="commentCount"></span>
+                <a href="/2019/08/06/post-18/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/06/post-18/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -490,97 +476,227 @@
       
 
       
-        <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
-<li>习惯优先于配置</li>
-<li>(前后端分离，可无视) 内嵌 Servlet 容器：Tomcat 、 Jetty</li>
-</ul>
+        <h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>可读性 可扩展 可维护 可靠性 安全性 性能</p>
 <a id="more"></a>
-<h2 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h2><ul>
-<li>前端 &lt;– 跳转逻辑和页面交互</li>
-<li>后端 只负责提供接口数据 RESTful api</li>
-<li>前端工作更重，除非后端有复杂的算法设计</li>
-<li>主要是易扩展</li>
-<li>前后端可独立出来，中间是一般的 RESTful 交流。前端可选框架更多，VUE等，脱离Java，可使用 Nginx。</li>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>继承、封装、多态、接口</p>
+<h2 id="Tips-1"><a href="#Tips-1" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li>添加 优于 修改</li>
+<li>接口 优于 (分解 + 继承)</li>
+<li>少 if(类型) else</li>
 </ul>
-<h2 id="Maven-mvn-类似-–-gt-npm"><a href="#Maven-mvn-类似-–-gt-npm" class="headerlink" title="Maven mvn 类似 –&gt; npm"></a>Maven mvn 类似 –&gt; npm</h2><p>编译、依赖、打包、运行、文档</p>
-<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p> Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）<br> 编程方法、标准、设计模式</p>
-<h2 id="RESTful-api"><a href="#RESTful-api" class="headerlink" title="RESTful api"></a>RESTful api</h2><p><code>Representational State Transfer</code></p>
-<h3 id="基本原则"><a href="#基本原则" class="headerlink" title="基本原则"></a>基本原则</h3><ul>
-<li>URI，Universal Resource Identifier<ul>
-<li>尽量 全小写</li>
-<li>尽量 不用 动词</li>
-<li>集合 用 复数形式</li>
+<h2 id="基本原则"><a href="#基本原则" class="headerlink" title="基本原则"></a>基本原则</h2><ul>
+<li>高内聚，低耦合。</li>
+<li>该有的都有，有的都该有。</li>
 </ul>
-</li>
-<li>HTTP 协议 动词<ul>
-<li>GET，获取</li>
-<li>POST，新建</li>
-<li>PUT，更新 完整的</li>
-<li>PATCH，更新 部分属性</li>
-<li>DELETE，删除资源</li>
+<h3 id="单一职责"><a href="#单一职责" class="headerlink" title="单一职责"></a>单一职责</h3><ul>
+<li>类级别： UserDao –&gt; 只负责 User 表</li>
+<li>类 足够简单 –&gt; 方法级 的 单一职责</li>
 </ul>
-</li>
-<li>状态码<ul>
-<li>200 成功</li>
-<li>401 无权限（用户行为错误）</li>
-<li>5xx 服务器错误（拥塞..）</li>
+<h3 id="接口隔离（最小接口，接口单一职责）"><a href="#接口隔离（最小接口，接口单一职责）" class="headerlink" title="接口隔离（最小接口，接口单一职责）"></a>接口隔离（最小接口，接口单一职责）</h3><ul>
+<li>接口拆分 –&gt; 高内聚</li>
+<li>接口用户不应该被迫实现 不必要的 方法</li>
+</ul>
+<h3 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h3><ul>
+<li>核心思想： 面向 <strong>接口</strong> 编程（接口最底层、最抽象）</li>
+<li>依赖方式：<ul>
+<li>fun(接口)</li>
+<li>成员变量 + 构造函数</li>
+<li>成员变量 + setter</li>
 </ul>
 </li>
+<li>成员变量最好是 接口 （抽象类）</li>
 </ul>
-<h3 id="安全原则"><a href="#安全原则" class="headerlink" title="安全原则"></a>安全原则</h3><ul>
-<li>Authentication 和 Permission<ul>
-<li>常用的认证机制是 Basic Auth 和 OAuth</li>
+<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><ul>
+<li>子类 要可以当成基类来用</li>
+<li>子类尽量不要覆盖父类方法<ul>
+<li>@Override 断言是要覆盖，而不是 添加新方法</li>
 </ul>
 </li>
-<li>CORS，Cross-origin resource sharing</li>
+<li>更多地去考虑接口、依赖（聚合、组合），而不是继承</li>
 </ul>
-<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><ul>
-<li>@responseBody，将返回结果转化为 JSON or XML 后，填充到目标 body</li>
-<li>@Param，简化 MyBatis 中 mapper.xml 的配置</li>
+<h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><ul>
+<li>对扩展开放，对修改关闭</li>
+<li>接口 或 继承</li>
+<li>继承可以用，但一定要结构清晰</li>
+<li>OO最核心的是接口，而不是继承</li>
 </ul>
-<h2 id="事务-amp-AOP"><a href="#事务-amp-AOP" class="headerlink" title="事务 &amp; AOP"></a>事务 &amp; AOP</h2><p>声明式事务：</p>
+<h3 id="低迷特法则-最少知道原则"><a href="#低迷特法则-最少知道原则" class="headerlink" title="低迷特法则 最少知道原则"></a>低迷特法则 最少知道原则</h3><ul>
+<li>外部类 不应成为 类方法的局部变量</li>
+<li>更多地去提供 <strong>完整的</strong>服务 而不是 数据（业务层）</li>
+<li>getter 返回类型最好为 基本类型(字符串、JSON)</li>
+</ul>
+<h3 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h3><ul>
+<li>考虑 组合/聚合 而不是 继承<ul>
+<li>组合(Composition) 构造函数 与生俱来的部分</li>
+<li>聚合(Aggregation) setter 由外部生产，而后获得的资产</li>
+</ul>
+</li>
+</ul>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h2><h3 id="单例-Singleton"><a href="#单例-Singleton" class="headerlink" title="单例 Singleton"></a>单例 Singleton</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>只有一个实例对象</li>
+<li>应用： 频繁被使用(数据源、全局变量) 重量级对象(创建耗费的资源较多)</li>
+</ul>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>饿汉式，静态内部实例对象 ，线程安全</li>
+<li>懒汉式 + 双重（避免在线程同步上浪费过多的效率）检查</li>
+<li>枚举 推荐</li>
+</ul>
+<h3 id="原型模式-Prototype"><a href="#原型模式-Prototype" class="headerlink" title="原型模式 Prototype"></a>原型模式 Prototype</h3><h4 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>赋值对象</li>
+<li>模板化 创建 实例</li>
+<li>直接拷贝，新建效率高</li>
+</ul>
+<h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>implement Cloneable<ul>
+<li>注意 默认（super.clone(),即Object类的方法）的是 浅拷贝</li>
+</ul>
+</li>
+</ul>
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><ul>
+<li>clone方法：谨慎编写clone方法</li>
+<li>序列化对象（推荐）：<ul>
+<li>创建 <del>字节和</del>对象 的 输入和输出 流</li>
+<li>序列化（输出） 和 反序列化（读入，在这里可以获得一个新的对象 ，即我们要返回的复制结果）</li>
+<li>设计简单，直接输入输出整个对象（就可以不用针对多种成员变量分别处理）</li>
+</ul>
+</li>
+</ul>
+<h3 id="工厂-Factory-Pattern"><a href="#工厂-Factory-Pattern" class="headerlink" title="工厂 Factory Pattern"></a>工厂 Factory Pattern</h3><h4 id="背景-2"><a href="#背景-2" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>子类 定制服务</li>
+<li>提供（实例化） 多样化 的 子类 对象</li>
+</ul>
+<h4 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>简单工厂（静态工厂）</li>
+<li>工厂方法模式（基类工厂 –&gt; 多种不同子类）</li>
+<li>抽象工厂（接口）</li>
+</ul>
+<h3 id="建造者模式-Builder"><a href="#建造者模式-Builder" class="headerlink" title="建造者模式 Builder"></a>建造者模式 Builder</h3><h4 id="背景-3"><a href="#背景-3" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>工厂模式的区别是：建造者模式更加关注与零件装配的 <strong>顺序</strong><ul>
+<li>工厂模式： 按类型 <strong>分发</strong> 材料自己负责 产品间差异很大（分类，多样化）</li>
+<li>Builder： 按流程 <strong>构造</strong> 接收外部材料 流程一样、程度不同（定制化）</li>
+</ul>
+</li>
+</ul>
+<h4 id="实现-3"><a href="#实现-3" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>抽象工厂<ul>
+<li>产品对象 成员变量</li>
+<li>抽象 的 配置方法</li>
+</ul>
+</li>
+<li>StringBuilder<ul>
+<li>封装了一个更加 高效（FuZa） 的 构造方法（GuoCheng）</li>
+</ul>
+</li>
+</ul>
+<h2 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h2><h3 id="适配器模式-Adapter"><a href="#适配器模式-Adapter" class="headerlink" title="适配器模式 Adapter"></a>适配器模式 Adapter</h3><h4 id="背景-4"><a href="#背景-4" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>兼容性 –&gt; 需要实现某个接口（提供特定方法）</li>
+<li>不应该在 软件设计 过程中被考虑，而是在后期实际应用过程中发现有复用已有<del>类(划掉)</del>（对象、资源）的需求。</li>
+</ul>
+<h4 id="实现-4"><a href="#实现-4" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>继承 或 依赖（成员对象，推荐） 或 接口（推荐）</li>
+<li>缺省适配器<ul>
+<li>不想实现目标接口的全部方法</li>
+<li>添加一个 完全空实现 的 中间 抽象类</li>
+<li>继承中间类，然后选择性覆盖</li>
+</ul>
+</li>
+</ul>
+<img src="/2019/08/06/post-18/adapter.png" title="adapter">
 <ul>
-<li>xml</li>
-<li>@Transactional<br>（其他：编程式事务）<br><code>声明式事务是建立在 AOP 机制之上的，其本质是 **对方法前后进行拦截**</code></li>
+<li>调用者提供一个对象（资源），然后交由适配器改变其 <del>行为模式</del></li>
 </ul>
-<h2 id="其他组件"><a href="#其他组件" class="headerlink" title="其他组件"></a>其他组件</h2><h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>日志型、Key-Value数据库</p>
-<h3 id="Scheduled-实现定时任务"><a href="#Scheduled-实现定时任务" class="headerlink" title="@Scheduled 实现定时任务"></a>@Scheduled 实现定时任务</h3><p>入口 Application 需添加  @EnableScheduling</p>
-<h3 id="Swagger"><a href="#Swagger" class="headerlink" title="Swagger"></a>Swagger</h3><p>RESTful API文档、接口测试</p>
+<h3 id="桥接模式-Bridge"><a href="#桥接模式-Bridge" class="headerlink" title="桥接模式 Bridge"></a>桥接模式 Bridge</h3><h4 id="背景-5"><a href="#背景-5" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>类爆炸</li>
+<li><del>同样的一堆东西，按不同的标准，可以分成不同的类别（基类），不能以无脑继承的方式实现</del>分类交叉，部分A是B，部分B是A。<ul>
+<li>约德尔人里有： 元素使 忍者 法师 纳尔（乱入）</li>
+<li>c++ 多继承 或可 避免类爆炸，但是，应尽量少考虑继承。</li>
+</ul>
+</li>
+<li>继承 与 接口：<ul>
+<li>虽然你是你爸生的，别人会当成你爸来用</li>
+<li>但更重要的是后期学会的、拥有的东西（接口、成员变量）</li>
+</ul>
+</li>
+</ul>
+<h4 id="实现-5"><a href="#实现-5" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>多继承 –&gt; 多接口</li>
+<li>常见桥：Driver 驱动器</li>
+</ul>
+<img src="/2019/08/06/post-18/bridge.png" title="adapter">
+<img src="/2019/08/06/post-18/bridge2.png" title="adapter">
 <ul>
-<li>@ApiOperation</li>
-<li>@ApiImplicitParams</li>
-<li>@ApiImplicitParam<h3 id="Spring-Boot-Admin"><a href="#Spring-Boot-Admin" class="headerlink" title="Spring Boot Admin"></a>Spring Boot Admin</h3>资源、性能监控</li>
-<li>@EnableAdminServer</li>
-<li>spring.boot.admin.client.url=<a href="http://localhost:port" target="_blank" rel="noopener">http://localhost:port</a></li>
+<li>桥：抽象英雄类</li>
+<li>类推：战舰 (日系 美系)（驱逐舰 巡洋舰）</li>
 </ul>
-<h2 id="目录结构（开发结构）"><a href="#目录结构（开发结构）" class="headerlink" title="目录结构（开发结构）"></a>目录结构（开发结构）</h2><h3 id="entity"><a href="#entity" class="headerlink" title="entity"></a>entity</h3><h3 id="Dao-数据连接对象"><a href="#Dao-数据连接对象" class="headerlink" title="Dao 数据连接对象"></a>Dao 数据连接对象</h3><p>@Repository（一般不用，有xml）</p>
+<h3 id="装饰器-Decorator"><a href="#装饰器-Decorator" class="headerlink" title="装饰器 Decorator"></a>装饰器 Decorator</h3><h4 id="背景-6"><a href="#背景-6" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>单品饮料 + 额外调料</li>
+</ul>
+<h4 id="实现-6"><a href="#实现-6" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>继承 +（并且） <strong>组合</strong></li>
+</ul>
+<img src="/2019/08/06/post-18/decorator.png" title="adapter">
 <ul>
-<li>dao接口包</li>
-<li>mapper 中基于 Mybatis 的 xml 对象（beans）</li>
+<li>组合 –&gt; 递归<ul>
+<li>改装后也还是船体，故可以再接改装。</li>
+<li>先放一门主炮，然后作为新船体，再接着放一门主炮 …</li>
 </ul>
-<h3 id="Service-层"><a href="#Service-层" class="headerlink" title="Service 层"></a>Service 层</h3><p>@service</p>
-<ul>
-<li>当项目的业务逻辑简单时，可选择service层=service类；</li>
-<li>当项目的业务复杂时，可选择service层=service接口+serviceImpl实现类；</li>
+</li>
 </ul>
-<h3 id="Controller-层"><a href="#Controller-层" class="headerlink" title="Controller 层"></a>Controller 层</h3><p>@Controller or @RestController（包含 @ResponseBody）</p>
-<h3 id="component"><a href="#component" class="headerlink" title="@component"></a>@component</h3><p>普通的、一般的 Bean，如 定时任务</p>
-<h3 id="自定义路径映射"><a href="#自定义路径映射" class="headerlink" title="自定义路径映射"></a>自定义路径映射</h3><p>SpringBootWebMvcConfigurer<br><code>registry.addResourceHandler(&quot;/files/**&quot;).addResourceLocations(&quot;file:/home/user/folder/&quot;);</code></p>
-<h2 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h2><p>application.properties</p>
-<h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><ul>
-<li>logging.level.pkg.pkg=level</li>
-<li>logging.path/logging.file</li>
+<h3 id="组合模式-Composite"><a href="#组合模式-Composite" class="headerlink" title="组合模式 Composite"></a>组合模式 Composite</h3><h4 id="背景-7"><a href="#背景-7" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>字面上的意思</li>
+<li>树形结构，包含（组合）关系</li>
+<li>组合模式 要求 所有层次的组件都源自一个基类<ul>
+<li>如 学校 学院 系 都是管理单元</li>
+<li>这也意味着组件间差异性不能过大</li>
+<li>那我还都是 Object 呢 &gt;_</li>
 </ul>
-<h3 id="http服务"><a href="#http服务" class="headerlink" title="http服务"></a>http服务</h3><ul>
-<li>server.port=8082</li>
-<li>spring.resources.static-locations=classpath:/folderA/,classpath:/folderB/</li>
-<li>server.servlet.context-path=/shiyanlou/</li>
+</li>
 </ul>
-<h3 id="文件上传-MultipartResolver"><a href="#文件上传-MultipartResolver" class="headerlink" title="文件上传 MultipartResolver"></a>文件上传 MultipartResolver</h3><ul>
-<li>spring.servlet.multipart.max-file-size</li>
+<h4 id="实现-7"><a href="#实现-7" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>有一个 集合/列表 成员变量</li>
+<li>有 put 方法</li>
 </ul>
-<h3 id="数据库相关"><a href="#数据库相关" class="headerlink" title="数据库相关"></a>数据库相关</h3><ul>
-<li>mybatis.mapper-locations=classpath:mapper/*Dao.xml</li>
+<h3 id="外观模式-Facade"><a href="#外观模式-Facade" class="headerlink" title="外观模式 Facade"></a>外观模式 Facade</h3><p>过程模式</p>
+<h4 id="背景-8"><a href="#背景-8" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>封装</li>
+<li>多而复杂的细节过程 –&gt; 中控</li>
+<li>过程整合 如 init start</li>
+<li>关闭一个个电器 –&gt; 拉闸</li>
+</ul>
+<h4 id="实现-8"><a href="#实现-8" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>中控<ul>
+<li>成员变量：各个子模块</li>
+<li>方法：整合而成的控制过程</li>
+</ul>
+</li>
+</ul>
+<h3 id="享元模式-Flyweight"><a href="#享元模式-Flyweight" class="headerlink" title="享元模式 Flyweight"></a>享元模式 Flyweight</h3><h4 id="背景-9"><a href="#背景-9" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>避免频繁地创建对象</li>
+<li>线程池<ul>
+<li>内部状态：线程序列信息</li>
+<li>外部状态：要执行的内容</li>
+</ul>
+</li>
+</ul>
+<h3 id="代理模式-Proxy-Pattern"><a href="#代理模式-Proxy-Pattern" class="headerlink" title="代理模式 Proxy Pattern"></a>代理模式 Proxy Pattern</h3><h4 id="背景-10"><a href="#背景-10" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>中间层<ul>
+<li>直接访问对象开销过大（远程对象）</li>
+<li>进行预处理、简单验证</li>
+<li>完善功能。人性化，易用化。</li>
+<li>扩展功能。如目标对象只提供数据，代理可以提供排序功能。</li>
+</ul>
+</li>
+</ul>
+<h4 id="实现-9"><a href="#实现-9" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>静态代理<ul>
+<li>代理类与目标类是同层次的类（父类、接口相同）</li>
+<li>代理类接收一个目标对象（或可直接包含），并简单地通过调用该对象实现相应的方法</li>
+</ul>
+</li>
+<li>动态代理<ul>
+<li>反射 java.lang.reflect.Proxy<br>-</li>
+</ul>
+</li>
 </ul>
 
       
@@ -603,14 +719,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
-            <a href="/tags/Spring/" rel="tag"># Spring</a>
-          
-        </div>
-      
 
       
       
@@ -620,8 +728,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/22/post-9/" rel="next" title="Spring poi >_">
-                <i class="fa fa-chevron-left"></i> Spring poi >_
+              <a href="/2019/08/06/post-17/" rel="next" title="Go">
+                <i class="fa fa-chevron-left"></i> Go
               </a>
             
           </div>
@@ -629,10 +737,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/31/post-11/" rel="prev" title="Thymeleaf">
-                Thymeleaf <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -851,7 +955,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前后端分离"><span class="nav-number">2.</span> <span class="nav-text">前后端分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-mvn-类似-–-gt-npm"><span class="nav-number">3.</span> <span class="nav-text">Maven mvn 类似 –&gt; npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX"><span class="nav-number">4.</span> <span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RESTful-api"><span class="nav-number">5.</span> <span class="nav-text">RESTful api</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本原则"><span class="nav-number">5.1.</span> <span class="nav-text">基本原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全原则"><span class="nav-number">5.2.</span> <span class="nav-text">安全原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解"><span class="nav-number">5.3.</span> <span class="nav-text">注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务-amp-AOP"><span class="nav-number">6.</span> <span class="nav-text">事务 &amp; AOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他组件"><span class="nav-number">7.</span> <span class="nav-text">其他组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis"><span class="nav-number">7.1.</span> <span class="nav-text">Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scheduled-实现定时任务"><span class="nav-number">7.2.</span> <span class="nav-text">@Scheduled 实现定时任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swagger"><span class="nav-number">7.3.</span> <span class="nav-text">Swagger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-Admin"><span class="nav-number">7.4.</span> <span class="nav-text">Spring Boot Admin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构（开发结构）"><span class="nav-number">8.</span> <span class="nav-text">目录结构（开发结构）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#entity"><span class="nav-number">8.1.</span> <span class="nav-text">entity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dao-数据连接对象"><span class="nav-number">8.2.</span> <span class="nav-text">Dao 数据连接对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-层"><span class="nav-number">8.3.</span> <span class="nav-text">Service 层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-层"><span class="nav-number">8.4.</span> <span class="nav-text">Controller 层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#component"><span class="nav-number">8.5.</span> <span class="nav-text">@component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义路径映射"><span class="nav-number">8.6.</span> <span class="nav-text">自定义路径映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目配置"><span class="nav-number">9.</span> <span class="nav-text">项目配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志"><span class="nav-number">9.1.</span> <span class="nav-text">日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http服务"><span class="nav-number">9.2.</span> <span class="nav-text">http服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件上传-MultipartResolver"><span class="nav-number">9.3.</span> <span class="nav-text">文件上传 MultipartResolver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库相关"><span class="nav-number">9.4.</span> <span class="nav-text">数据库相关</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tips"><span class="nav-number">1.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">1.2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips-1"><span class="nav-number">1.3.</span> <span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本原则"><span class="nav-number">1.4.</span> <span class="nav-text">基本原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单一职责"><span class="nav-number">1.4.1.</span> <span class="nav-text">单一职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口隔离（最小接口，接口单一职责）"><span class="nav-number">1.4.2.</span> <span class="nav-text">接口隔离（最小接口，接口单一职责）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖倒转原则"><span class="nav-number">1.4.3.</span> <span class="nav-text">依赖倒转原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">1.4.4.</span> <span class="nav-text">里氏替换原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开闭原则"><span class="nav-number">1.4.5.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#低迷特法则-最少知道原则"><span class="nav-number">1.4.6.</span> <span class="nav-text">低迷特法则 最少知道原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合成复用原则"><span class="nav-number">1.4.7.</span> <span class="nav-text">合成复用原则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式"><span class="nav-number">2.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建型"><span class="nav-number">2.1.</span> <span class="nav-text">创建型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单例-Singleton"><span class="nav-number">2.1.1.</span> <span class="nav-text">单例 Singleton</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型模式-Prototype"><span class="nav-number">2.1.2.</span> <span class="nav-text">原型模式 Prototype</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-1"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-1"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深拷贝"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">深拷贝</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂-Factory-Pattern"><span class="nav-number">2.1.3.</span> <span class="nav-text">工厂 Factory Pattern</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-2"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-2"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建造者模式-Builder"><span class="nav-number">2.1.4.</span> <span class="nav-text">建造者模式 Builder</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-3"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-3"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构型"><span class="nav-number">2.2.</span> <span class="nav-text">结构型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#适配器模式-Adapter"><span class="nav-number">2.2.1.</span> <span class="nav-text">适配器模式 Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-4"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-4"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桥接模式-Bridge"><span class="nav-number">2.2.2.</span> <span class="nav-text">桥接模式 Bridge</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-5"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-5"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰器-Decorator"><span class="nav-number">2.2.3.</span> <span class="nav-text">装饰器 Decorator</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-6"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-6"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合模式-Composite"><span class="nav-number">2.2.4.</span> <span class="nav-text">组合模式 Composite</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-7"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-7"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外观模式-Facade"><span class="nav-number">2.2.5.</span> <span class="nav-text">外观模式 Facade</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-8"><span class="nav-number">2.2.5.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-8"><span class="nav-number">2.2.5.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#享元模式-Flyweight"><span class="nav-number">2.2.6.</span> <span class="nav-text">享元模式 Flyweight</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-9"><span class="nav-number">2.2.6.1.</span> <span class="nav-text">背景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理模式-Proxy-Pattern"><span class="nav-number">2.2.7.</span> <span class="nav-text">代理模式 Proxy Pattern</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-10"><span class="nav-number">2.2.7.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-9"><span class="nav-number">2.2.7.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
