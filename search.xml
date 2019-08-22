@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[OpenGL]]></title>
+    <url>%2F2019%2F08%2F21%2Fpost-20%2F</url>
+    <content type="text"><![CDATA[资料 OpenGL官网 GLFW 编译 Tutorials 中文教程 背景 协议 x(x11) –&gt; 服务器 Xorg –&gt; 客户端 Gnome OpenGL 协议 –&gt; GLFW 实现 Cmake –&gt; 自动生成 makefile 的工具，然后 make glad 一个 OpenGL 相关的，在线且便捷的项目初始化工具 自动引入头文件、OpenGL对象指针管理 关于 makefile： CFLAGS : -c –&gt; .o(中间文件,不连接); -o –&gt; out: 连接成可执行文件; -I – include dir; -g –&gt; G-DB debug LDFLAGS : -l/-L –&gt; lib: .a .so / dir; –static –&gt; 静态，生成自带依赖库的文件 参数顺序是有要求的！！！！！！！！！！！ 环境配置GLFW 下载的源码包里有2个东西要用： include文件夹（ 直接用 就可以） 编译后得到的库文件: 根目录下使用cmake生成makefile，然后编译到指定目录，目标目录内的src文件夹里就是要用的库文件了(libglfw3.a) -lGLsudo ln -s libGL.so.1 /usr/lib/libGL.so Hello Window 基本步骤 glfw 的初始化 通过 glfw 创建窗口对象 初始化 glad 像 GL 申请画布：glViewport 注册回调函数 GLFW 提供形如 glfw…Callback( window, my_callback) 的方法]]></content>
+      <categories>
+        <category>图像</category>
+      </categories>
+      <tags>
+        <tag>OpenGL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[色は匂へど散りぬるを - 幽閉サテライト]]></title>
     <url>%2F2019%2F08%2F18%2Fpost-19%2F</url>
-    <content type="text"><![CDATA[色は匂へど散りぬるを繁花沁人，终亦飘零 花儿，终将随风而去。片刻的流连，也不得容许。 曾几何时，一现的昙花，述说着，生便是罪啊。奈何，难弃，难舍。那怀揣着的眷念，时常在心底雀跃。 花儿，终将随风而去。既无暇流连，又不由退怯。柔弱会被温柔以待吗，不甘于软弱的自己，被这名为温柔的噩梦悄悄地玩弄。 终于，你还是察觉到了我的软弱，宽恕了，这来自追求者的欲求。只是，这昙花一现的瞬间，此刻瞥见，或许为时已晚… 花儿，终将随风而去。天真地想把一切都托付于你，这不被允许的柔情，不安分的占有欲，还有，这难以度量的，任性的爱恋。 花儿，终于随风而去。点点眷念，在短短的记忆里，不断涌现。枯萎而即将逝去的生命啊，脆弱而顽强地延续下去吧，正如那无情而又温柔的岁月一般。]]></content>
+    <content type="text"><![CDATA[色は匂へど散りぬるを繁花沁人，终亦飘零 花儿，终将随风而去。片刻的流连，也不得容许。 曾几何时，一现的昙花，述说着，生便是罪啊。奈何，难弃，难舍。那怀揣着的眷念，时常在心底雀跃。 花儿，终将随风而去。既无暇流连，又不由退怯。柔弱会被温柔以待吗，不甘于软弱的自己，被这名为温柔的噩梦悄悄地玩弄。 终于，你还是察觉到了我的软弱，这来自追求者的欲求，也得到了宽恕。只是，这昙花一现的瞬间，此刻瞥见，或许为时已晚… 花儿，终将随风而去。天真地想把一切都托付于你，这不被允许的柔情，不安分的占有欲，还有，这难以度量的，任性的爱恋。 花儿，终于随风而去。点点眷念，在短短的记忆里，不断涌现。枯萎而即将逝去的生命啊，脆弱而顽强地延续下去吧，正如那无情而又温柔的岁月一般。]]></content>
       <categories>
         <category>日常</category>
       </categories>
