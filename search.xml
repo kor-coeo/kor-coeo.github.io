@@ -207,7 +207,7 @@
   <entry>
     <title><![CDATA[Linux 运维]]></title>
     <url>%2F2019%2F03%2F17%2Fpost-2%2F</url>
-    <content type="text"><![CDATA[Mysql备份和恢复12345mysqldump -uroot -p -P3306 --databases ikazuchi &gt; ika.sqlmysqldump -uroot -p -P3306 ikazuchi table &gt; table.sqlmysql -uroot -p ikazuchi &lt; ika.sql CURD INSERTINSERT INTO ripe ( id, tag) VALUES ( %s, %s) UPDATEUPDATE ripe SET ta = %s WHERE id = %s SELECTSELECT MAX(tv_sec) FROM ripe WHERE … DELETEDELETE FROM ripe WHERE … 判断是否为 NULLIS NULLIS NOT NULL 设置为 NULLcol = NULL 将一个表的数据插入另一个表INSERT INTO tableA ( colA, colB) SELECT colA, colB FROM tableB WHERE … 查询某一列的取值select distinct col from table]]></content>
+    <content type="text"><![CDATA[常用命令nohup &amp; &amp;&amp; | || nohup 脱离当前终端到后台执行 &amp; 后台执行，会随着终端一起关闭 &amp;&amp; 前一个执行成功再执行下一个 ‘|’ 管道，上一个的输出作为下一条命令的参数 ‘||’ 前面执行失败，再执行后面的 重定向 ‘&gt;’ 覆盖 ‘&gt;&gt;’ 追加 ‘&lt;’ 输入重定向，如导入 sql 文件的时候就会用到了 Mysql备份和恢复12345mysqldump -uroot -p -P3306 --databases ikazuchi &gt; ika.sqlmysqldump -uroot -p -P3306 ikazuchi table &gt; table.sqlmysql -uroot -p ikazuchi &lt; ika.sql CURD INSERTINSERT INTO ripe ( id, tag) VALUES ( %s, %s) UPDATEUPDATE ripe SET ta = %s WHERE id = %s SELECTSELECT MAX(tv_sec) FROM ripe WHERE … DELETEDELETE FROM ripe WHERE … 判断是否为 NULLIS NULLIS NOT NULL 设置为 NULLcol = NULL 将一个表的数据插入另一个表INSERT INTO tableA ( colA, colB) SELECT colA, colB FROM tableB WHERE … 查询某一列的取值select distinct col from table]]></content>
       <categories>
         <category>运维</category>
       </categories>
