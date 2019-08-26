@@ -5,7 +5,7 @@
     <url>%2F2019%2F08%2F26%2Fpost-21%2F</url>
     <content type="text"><![CDATA[svn工具组服务端相关 svnadmin: 创建、调整、修复 仓库 （文件创建） 服务方式: svnserve: SSH mod_dav_svn: Apache HTTP 管理相关 svnlook svnversion svnsync svnrdump 客户端 svn 创建库svnadmin create /home/.../DIR新建的仓库中会包含不少初始文件，如conf文件夹内会包含不少配置文件。 conf 文件夹svnserve.conf anon-access: 未验证用户权限，”write”、”read”和”none”，write为可读可写，read只读，none即为禁用。 auth-access: authz-db: 权限配置文件所在。可为对conf的相对路径。conf目录下已有一个默认的 authz 文件。 passwd密码文件，是简单明文？格式：&lt;用户名&gt; = &lt;口令&gt;123[users]admin = adminpoi = ooi authz权限配置（分组）1234567891011[&lt;版本库名&gt;:&lt;路径&gt;][groups]g_admin = admin,thinker[admintools:/]@g_admin = rw* =[test:/home/thinker]thinker = rw* = r 创建服务svnserve -d -r /home/.../DIR-d: daemon,作为守护进程，后台执行。-r + DIR 指定根目录。 客户端checkoutupdate (git rebase)commit status 查看 stage add + file commit -m branch创建分支svn copy 要该的部分 副本路径(branches/my_branch）有够蠢的，copy? 切换分支居然是！！！！ cd merge切换到目标目录svn merge 副本路径 Git常用命令 git init git add -A git add fileName git commit -m “note” 其他命令 git status git diff git log 远程仓库配置账户信息 git config –global user.name “kor-coeo” git config –global user.email kor.coeo@gmail.com SSH keys ssh-keygen -t rsa -b 4096 -C “kor.coeo@gmail.com“ ssh-keygen cat ~/.ssh/id_rsa.pub 绑定远程仓库 git remote add origin git@github.com:… git push -u origin master]]></content>
       <categories>
-        <category>项目管理</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>svn</tag>
