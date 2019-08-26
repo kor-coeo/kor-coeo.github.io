@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="蛍火の杜">
 <meta property="og:description" content="资料 OpenGL官网 GLFW 编译 Tutorials 中文教程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-22T06:51:54.533Z">
+<meta property="og:updated_time" content="2019-08-23T09:05:51.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenGL">
 <meta name="twitter:description" content="资料 OpenGL官网 GLFW 编译 Tutorials 中文教程">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-22 14:51:54" itemprop="dateModified" datetime="2019-08-22T14:51:54+08:00">2019-08-22</time>
+                <time title="修改时间：2019-08-23 17:05:51" itemprop="dateModified" datetime="2019-08-23T17:05:51+08:00">2019-08-23</time>
               
             
           </span>
@@ -533,8 +533,21 @@
 </ol>
 </li>
 <li>注册回调函数<ul>
-<li>GLFW 提供形如 glfw…Callback( window, my_callback) 的方法</li>
+<li>GLFW 提供形如 glfw…Callback( window, my_callback) 的方法<h1 id="Hello-Triangle"><a href="#Hello-Triangle" class="headerlink" title="Hello Triangle"></a>Hello Triangle</h1><h2 id="Graphics-pipeline-渲染管道"><a href="#Graphics-pipeline-渲染管道" class="headerlink" title="Graphics pipeline 渲染管道"></a>Graphics pipeline 渲染管道</h2>1.顶点 -&gt; 2.连线 -&gt; 3.图形（可选，一般无操作） -&gt; 4.光栅化（获得片段，一个片段就是一个像素）-&gt; 5.片段着色 -&gt; 6.测试（alpha test，透明处理）与混合（blend）</li>
 </ul>
+</li>
+</ul>
+<h2 id="创建顶点"><a href="#创建顶点" class="headerlink" title="创建顶点"></a>创建顶点</h2><ul>
+<li>x，y，z 均应在[-1,1],否则丢弃</li>
+<li>vertex buffer objects (VBO)：在 显存 中储存顶点<ul>
+<li>在OpenGL中具体为： GL_ARRAY_BUFFER<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GLunit vbos[5];</span><br><span class="line">glGenBuffers(5, vbos);</span><br><span class="line">glBindBuffer(GL_ARRAY_BUFFER, vbos);</span><br><span class="line"># （类型，大小，数据，策略）告知GPU的存储策略：稳定，易变，极易变</span><br><span class="line">glBufferData(GL_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="编写着色器模块"><a href="#编写着色器模块" class="headerlink" title="编写着色器模块"></a>编写着色器模块</h2><ul>
+<li>专用语言：GLSL (OpenGL Shading Language)</li>
+<li>可在 运行时 动态 编译<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GLunit vertexShader;</span><br><span class="line">vertexShader = glCreateShader(GL_VERTEX_SHADER);</span><br><span class="line">glShaderSource(vertexShader, 1, &amp;vertexShaderSource, NULL);</span><br><span class="line">glCompileShader(vertexShader);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -582,6 +595,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/26/post-21/" rel="prev" title="SVN 与 Git">
+                SVN 与 Git <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -656,7 +673,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -681,7 +698,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -740,7 +759,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">21</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -804,7 +827,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#资料"><span class="nav-number">1.</span> <span class="nav-text">资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境配置"><span class="nav-number">3.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GLFW"><span class="nav-number">3.1.</span> <span class="nav-text">GLFW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lGL"><span class="nav-number">3.2.</span> <span class="nav-text">-lGL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-Window"><span class="nav-number">4.</span> <span class="nav-text">Hello Window</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#资料"><span class="nav-number">1.</span> <span class="nav-text">资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境配置"><span class="nav-number">3.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GLFW"><span class="nav-number">3.1.</span> <span class="nav-text">GLFW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lGL"><span class="nav-number">3.2.</span> <span class="nav-text">-lGL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-Window"><span class="nav-number">4.</span> <span class="nav-text">Hello Window</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-Triangle"><span class="nav-number">5.</span> <span class="nav-text">Hello Triangle</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphics-pipeline-渲染管道"><span class="nav-number">5.1.</span> <span class="nav-text">Graphics pipeline 渲染管道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建顶点"><span class="nav-number">5.2.</span> <span class="nav-text">创建顶点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写着色器模块"><span class="nav-number">5.3.</span> <span class="nav-text">编写着色器模块</span></a></li></ol></li></ol></div>
             
 
           </div>

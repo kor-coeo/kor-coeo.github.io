@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SVN 与 Git]]></title>
+    <url>%2F2019%2F08%2F26%2Fpost-21%2F</url>
+    <content type="text"><![CDATA[svn工具组服务端相关 svnadmin: 创建、调整、修复 仓库 （文件创建） 服务方式: svnserve: SSH mod_dav_svn: Apache HTTP 管理相关 svnlook svnversion svnsync svnrdump 客户端 svn 创建库svnadmin create /home/.../DIR新建的仓库中会包含不少初始文件，如conf文件夹内会包含不少配置文件。 conf 文件夹svnserve.conf anon-access: 未验证用户权限，”write”、”read”和”none”，write为可读可写，read只读，none即为禁用。 auth-access: authz-db: 权限配置文件所在。可为对conf的相对路径。conf目录下已有一个默认的 authz 文件。 passwd密码文件，是简单明文？格式：&lt;用户名&gt; = &lt;口令&gt;123[users]admin = adminpoi = ooi authz权限配置（分组）1234567891011[&lt;版本库名&gt;:&lt;路径&gt;][groups]g_admin = admin,thinker[admintools:/]@g_admin = rw* =[test:/home/thinker]thinker = rw* = r 创建服务svnserve -d -r /home/.../DIR-d: daemon,作为守护进程，后台执行。-r + DIR 指定根目录。 客户端checkoutupdate (git rebase)commit status 查看 stage add + file commit -m branch创建分支svn copy 要该的部分 副本路径(branches/my_branch）有够蠢的，copy? 切换分支居然是！！！！ cd merge切换到目标目录svn merge 副本路径 Git常用命令 git init git add -A git add fileName git commit -m “note” 其他命令 git status git diff git log 远程仓库配置账户信息 git config –global user.name “kor-coeo” git config –global user.email kor.coeo@gmail.com SSH keys ssh-keygen -t rsa -b 4096 -C “kor.coeo@gmail.com“ ssh-keygen cat ~/.ssh/id_rsa.pub 绑定远程仓库 git remote add origin git@github.com:… git push -u origin master]]></content>
+      <categories>
+        <category>项目管理</category>
+      </categories>
+      <tags>
+        <tag>svn</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[OpenGL]]></title>
     <url>%2F2019%2F08%2F21%2Fpost-20%2F</url>
-    <content type="text"><![CDATA[资料 OpenGL官网 GLFW 编译 Tutorials 中文教程 背景 协议 x(x11) –&gt; 服务器 Xorg –&gt; 客户端 Gnome OpenGL 协议 –&gt; GLFW 实现 Cmake –&gt; 自动生成 makefile 的工具，然后 make glad 一个 OpenGL 相关的，在线且便捷的项目初始化工具 自动引入头文件、OpenGL对象指针管理 关于 makefile： CFLAGS : -c –&gt; .o(中间文件,不连接); -o –&gt; out: 连接成可执行文件; -I – include dir; -g –&gt; G-DB debug LDFLAGS : -l/-L –&gt; lib: .a .so / dir; –static –&gt; 静态，生成自带依赖库的文件 参数顺序是有要求的！！！！！！！！！！！ 环境配置GLFW 下载的源码包里有2个东西要用： include文件夹（ 直接用 就可以） 编译后得到的库文件: 根目录下使用cmake生成makefile，然后编译到指定目录，目标目录内的src文件夹里就是要用的库文件了(libglfw3.a) -lGLsudo ln -s libGL.so.1 /usr/lib/libGL.so Hello Window 基本步骤 glfw 的初始化 通过 glfw 创建窗口对象 初始化 glad 像 GL 申请画布：glViewport 注册回调函数 GLFW 提供形如 glfw…Callback( window, my_callback) 的方法]]></content>
+    <content type="text"><![CDATA[资料 OpenGL官网 GLFW 编译 Tutorials 中文教程 背景 协议 x(x11) –&gt; 服务器 Xorg –&gt; 客户端 Gnome OpenGL 协议 –&gt; GLFW 实现 Cmake –&gt; 自动生成 makefile 的工具，然后 make glad 一个 OpenGL 相关的，在线且便捷的项目初始化工具 自动引入头文件、OpenGL对象指针管理 关于 makefile： CFLAGS : -c –&gt; .o(中间文件,不连接); -o –&gt; out: 连接成可执行文件; -I – include dir; -g –&gt; G-DB debug LDFLAGS : -l/-L –&gt; lib: .a .so / dir; –static –&gt; 静态，生成自带依赖库的文件 参数顺序是有要求的！！！！！！！！！！！ 环境配置GLFW 下载的源码包里有2个东西要用： include文件夹（ 直接用 就可以） 编译后得到的库文件: 根目录下使用cmake生成makefile，然后编译到指定目录，目标目录内的src文件夹里就是要用的库文件了(libglfw3.a) -lGLsudo ln -s libGL.so.1 /usr/lib/libGL.so Hello Window 基本步骤 glfw 的初始化 通过 glfw 创建窗口对象 初始化 glad 像 GL 申请画布：glViewport 注册回调函数 GLFW 提供形如 glfw…Callback( window, my_callback) 的方法Hello TriangleGraphics pipeline 渲染管道1.顶点 -&gt; 2.连线 -&gt; 3.图形（可选，一般无操作） -&gt; 4.光栅化（获得片段，一个片段就是一个像素）-&gt; 5.片段着色 -&gt; 6.测试（alpha test，透明处理）与混合（blend） 创建顶点 x，y，z 均应在[-1,1],否则丢弃 vertex buffer objects (VBO)：在 显存 中储存顶点 在OpenGL中具体为： GL_ARRAY_BUFFER12345GLunit vbos[5];glGenBuffers(5, vbos);glBindBuffer(GL_ARRAY_BUFFER, vbos);# （类型，大小，数据，策略）告知GPU的存储策略：稳定，易变，极易变glBufferData(GL_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW); 编写着色器模块 专用语言：GLSL (OpenGL Shading Language) 可在 运行时 动态 编译1234GLunit vertexShader;vertexShader = glCreateShader(GL_VERTEX_SHADER);glShaderSource(vertexShader, 1, &amp;vertexShaderSource, NULL);glCompileShader(vertexShader);]]></content>
       <categories>
         <category>图像</category>
       </categories>
