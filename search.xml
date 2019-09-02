@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[SVN 与 Git]]></title>
-    <url>%2F2019%2F08%2F26%2Fpost-21%2F</url>
-    <content type="text"><![CDATA[svn工具组服务端相关 svnadmin: 创建、调整、修复 仓库 （文件创建） 服务方式: svnserve: SSH mod_dav_svn: Apache HTTP 管理相关 svnlook svnversion svnsync svnrdump 客户端 svn 创建库svnadmin create /home/.../DIR新建的仓库中会包含不少初始文件，如conf文件夹内会包含不少配置文件。 conf 文件夹svnserve.conf anon-access: 未验证用户权限，”write”、”read”和”none”，write为可读可写，read只读，none即为禁用。 auth-access: authz-db: 权限配置文件所在。可为对conf的相对路径。conf目录下已有一个默认的 authz 文件。 passwd密码文件，是简单明文？格式：&lt;用户名&gt; = &lt;口令&gt;123[users]admin = adminpoi = ooi authz权限配置（分组）1234567891011[&lt;版本库名&gt;:&lt;路径&gt;][groups]g_admin = admin,thinker[admintools:/]@g_admin = rw* =[test:/home/thinker]thinker = rw* = r 创建服务svnserve -d -r /home/.../DIR-d: daemon,作为守护进程，后台执行。-r + DIR 指定根目录。 客户端checkoutupdate (git rebase)commit status 查看 stage add + file commit -m branch创建分支svn copy 要该的部分 副本路径(branches/my_branch）有够蠢的，copy? 切换分支居然是！！！！ cd merge切换到目标目录svn merge 副本路径 Git常用命令 git init git add -A git add fileName git commit -m “note” 其他命令 git status git diff git log 远程仓库配置账户信息 git config –global user.name “kor-coeo” git config –global user.email kor.coeo@gmail.com SSH keys ssh-keygen -t rsa -b 4096 -C “kor.coeo@gmail.com“ ssh-keygen cat ~/.ssh/id_rsa.pub 绑定远程仓库 git remote add origin git@github.com:… git push -u origin master]]></content>
+    <title><![CDATA[一些好用的软件工具]]></title>
+    <url>%2F2019%2F08%2F26%2Ftools-1%2F</url>
+    <content type="text"><![CDATA[软件类pandoc随心所欲的文档格式转换pandoc src.md -s -o tar.docx s: standalone o: output]]></content>
       <categories>
-        <category>工具</category>
+        <category>Tools</category>
       </categories>
       <tags>
+        <tag>Tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SVN 与 Git]]></title>
+    <url>%2F2019%2F08%2F26%2Fswe-3%2F</url>
+    <content type="text"><![CDATA[svn工具组服务端相关 svnadmin: 创建、调整、修复 仓库 （文件创建） 服务方式: svnserve: SSH mod_dav_svn: Apache HTTP 管理相关 svnlook svnversion svnsync svnrdump 客户端 svn 创建库svnadmin create /home/.../DIR新建的仓库中会包含不少初始文件，如conf文件夹内会包含不少配置文件。 conf 文件夹svnserve.conf anon-access: 未验证用户权限，”write”、”read”和”none”，write为可读可写，read只读，none即为禁用。 auth-access: authz-db: 权限配置文件所在。可为对conf的相对路径。conf目录下已有一个默认的 authz 文件。 passwd密码文件，是简单明文？格式：&lt;用户名&gt; = &lt;口令&gt;123[users]admin = adminpoi = ooi authz权限配置（分组）1234567891011[&lt;版本库名&gt;:&lt;路径&gt;][groups]g_admin = admin,thinker[admintools:/]@g_admin = rw* =[test:/home/thinker]thinker = rw* = r 创建服务svnserve -d -r /home/.../DIR-d: daemon,作为守护进程，后台执行。-r + DIR 指定根目录。 客户端checkoutupdate (git rebase)commit status 查看 stage add + file commit -m branch创建分支svn copy 要该的部分 副本路径(branches/my_branch）有够蠢的，copy? 切换分支居然是！！！！ cd merge切换到目标目录svn merge 副本路径 Git常用命令 git init git add -A git add fileName git commit -m “note” 其他命令 git status git diff git log 远程仓库配置账户信息 git config –global user.name “kor-coeo” git config –global user.email kor.coeo@gmail.com SSH keys ssh-keygen -t rsa -b 4096 -C “kor.coeo@gmail.com“ ssh-keygen cat ~/.ssh/id_rsa.pub 绑定远程仓库 git remote add origin git@github.com:… git push -u origin master]]></content>
+      <categories>
+        <category>软件工程</category>
+      </categories>
+      <tags>
+        <tag>Tools</tag>
         <tag>svn</tag>
         <tag>git</tag>
+        <tag>项目管理</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[OpenGL]]></title>
-    <url>%2F2019%2F08%2F21%2Fpost-20%2F</url>
-    <content type="text"><![CDATA[资料 OpenGL官网 GLFW 编译 Tutorials 中文教程 背景 协议 x(x11) –&gt; 服务器 Xorg –&gt; 客户端 Gnome OpenGL 协议 –&gt; GLFW 实现 Cmake –&gt; 自动生成 makefile 的工具，然后 make glad 一个 OpenGL 相关的，在线且便捷的项目初始化工具 自动引入头文件、OpenGL对象指针管理 关于 makefile： CFLAGS : -c –&gt; .o(中间文件,不连接); -o –&gt; out: 连接成可执行文件; -I – include dir; -g –&gt; G-DB debug LDFLAGS : -l/-L –&gt; lib: .a .so / dir; –static –&gt; 静态，生成自带依赖库的文件 参数顺序是有要求的！！！！！！！！！！！ 环境配置GLFW 下载的源码包里有2个东西要用： include文件夹（ 直接用 就可以） 编译后得到的库文件: 根目录下使用cmake生成makefile，然后编译到指定目录，目标目录内的src文件夹里就是要用的库文件了(libglfw3.a) -lGLsudo ln -s libGL.so.1 /usr/lib/libGL.so Hello Window 基本步骤 glfw 的初始化 通过 glfw 创建窗口对象 初始化 glad 像 GL 申请画布：glViewport 注册回调函数 GLFW 提供形如 glfw…Callback( window, my_callback) 的方法Hello TriangleGraphics pipeline 渲染管道1.顶点 -&gt; 2.连线 -&gt; 3.图形（可选，一般无操作） -&gt; 4.光栅化（获得片段，一个片段就是一个像素）-&gt; 5.片段着色 -&gt; 6.测试（alpha test，透明处理）与混合（blend） 创建顶点 x，y，z 均应在[-1,1],否则丢弃 vertex buffer objects (VBO)：在 显存 中储存顶点 在OpenGL中具体为： GL_ARRAY_BUFFER12345GLunit vbos[5];glGenBuffers(5, vbos);glBindBuffer(GL_ARRAY_BUFFER, vbos);# （类型，大小，数据，策略）告知GPU的存储策略：稳定，易变，极易变glBufferData(GL_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW); 编写着色器模块 专用语言：GLSL (OpenGL Shading Language) 可在 运行时 动态 编译1234GLunit vertexShader;vertexShader = glCreateShader(GL_VERTEX_SHADER);glShaderSource(vertexShader, 1, &amp;vertexShaderSource, NULL);glCompileShader(vertexShader);]]></content>
+    <url>%2F2019%2F08%2F21%2Fgdev-opengl-1%2F</url>
+    <content type="text"><![CDATA[资料 OpenGL官网 GLFW 编译 Tutorials 中文教程 背景 协议 x(x11) –&gt; 服务器 Xorg –&gt; 客户端 Gnome OpenGL 协议 –&gt; GLFW 实现 Cmake –&gt; 自动生成 makefile 的工具，然后 make glad 一个 OpenGL 相关的，在线且便捷的项目初始化工具 自动引入头文件、OpenGL对象指针管理 关于 makefile： CFLAGS : -c –&gt; .o(中间文件,不连接); -o –&gt; out: 连接成可执行文件; -I – include dir; -g –&gt; G-DB debug LDFLAGS : -l/-L –&gt; lib: .a .so / dir; –static –&gt; 静态，生成自带依赖库的文件 参数顺序是有要求的！！！！！！！！！！！ 环境配置GLFW 下载的源码包里有2个东西要用： include文件夹（ 直接用 就可以） 编译后得到的库文件: 根目录下使用cmake生成makefile，然后编译到指定目录，目标目录内的src文件夹里就是要用的库文件了(libglfw3.a) -lGLsudo ln -s libGL.so.1 /usr/lib/libGL.so Hello Window 基本步骤 glfw 的初始化 通过 glfw 创建窗口对象 初始化 glad 像 GL 申请画布：glViewport 注册回调函数 GLFW 提供形如 glfw…Callback( window, my_callback) 的方法 Hello TriangleGraphics pipeline 渲染管道1.顶点 -&gt; 2.连线 -&gt; 3.图形（可选，一般无操作） -&gt; 4.光栅化（获得片段，一个片段就是一个像素）-&gt; 5.片段着色 -&gt; 6.测试（alpha test，透明处理）与混合（blend） 创建顶点 x，y，z 均应在[-1,1],否则丢弃 vertex buffer objects (VBO)：在 显存 中储存顶点 在OpenGL中具体为： GL_ARRAY_BUFFER 12345GLunit vbos[5];glGenBuffers(5, vbos);glBindBuffer(GL_ARRAY_BUFFER, vbos);# （类型，大小，数据，策略）告知GPU的存储策略：稳定，易变，极易变glBufferData(GL_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW); 编写 顶点Shader 专用语言：GLSL (OpenGL Shading Language) 123456#version 330 corelayout (location = 0) in vec3 aPos;void main()&#123;&#125; layout (location = 0) 上面视为字符串，下面是在C源码中调用 可在 运行时 动态 编译 GL_VERTEX_SHADER 1234GLunit vertexShader;vertexShader = glCreateShader(GL_VERTEX_SHADER);glShaderSource(vertexShader, 1, &amp;vertexShaderSource, NULL);glCompileShader(vertexShader); Fragment（光栅） ShaderRGB_A FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f); GL_FRAGMENT_SHADER 1234GLunit fragmentShader;fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);glShaderSource(fragmentShader, 1, &amp;fragmentShaderSource, NULL);glCompileShader(fragmentShader); 连接 shader glCreateProgram(); 123456unsigned int shaderProgram;shaderProgram = glCreateProgram();glAttachShader(shaderProgram, vertexShader);glAttachShader(shaderProgram, fragmentShader);glLinkProgram(shaderProgram); 12345glUseProgram(shaderProgram);然后就可以删除：（意义不明）glDeleteShader(vertexShader);glDeleteShader(fragmentShader); 顶点 X，Y,Z 32bit(4字节)浮点 x3 123(location,维度，值类型，是否归一化+-1，单个顶点的大小，起始偏移量)glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);glEnableVertexAttribArray(0); VBO是一个顶点也是数组，一个独立图形的？ Vertex Array Object, VAO - 顶点数组。数组的数组。 GL_ARRAY_BUFFER glDrawArrays 索引缓冲对象(Element Buffer Object，EBO，也叫Index Buffer Object，IBO)。 储存顶点的索引 GL_ELEMENT_ARRAY_BUFFER glDrawElements]]></content>
       <categories>
-        <category>图像</category>
+        <category>Graph</category>
       </categories>
       <tags>
         <tag>OpenGL</tag>
@@ -25,7 +38,7 @@
   </entry>
   <entry>
     <title><![CDATA[色は匂へど散りぬるを - 幽閉サテライト]]></title>
-    <url>%2F2019%2F08%2F18%2Fpost-19%2F</url>
+    <url>%2F2019%2F08%2F18%2Fkoisi-2%2F</url>
     <content type="text"><![CDATA[色は匂へど散りぬるを繁花沁人，终亦飘零 花儿，终将随风而去。片刻的流连，也不得容许。 曾几何时，一现的昙花，述说着，生便是罪啊。奈何，难弃，难舍。那怀揣着的眷念，时常在心底雀跃。 花儿，终将随风而去。既无暇流连，又不由退怯。柔弱会被温柔以待吗，不甘于软弱的自己，被这名为温柔的噩梦悄悄地玩弄。 终于，你还是察觉到了我的软弱，这来自追求者的欲求，也得到了宽恕。只是，这昙花一现的瞬间，此刻瞥见，或许为时已晚… 花儿，终将随风而去。天真地想把一切都托付于你，这不被允许的柔情，不安分的占有欲，还有，这难以度量的，任性的爱恋。 花儿，终于随风而去。点点眷念，在短短的记忆里，不断涌现。枯萎而即将逝去的生命啊，脆弱而顽强地延续下去吧，正如那无情而又温柔的岁月一般。]]></content>
       <categories>
         <category>日常</category>
@@ -37,38 +50,44 @@
   </entry>
   <entry>
     <title><![CDATA[设计模式]]></title>
-    <url>%2F2019%2F08%2F06%2Fpost-18%2F</url>
+    <url>%2F2019%2F08%2F06%2Fswe-2%2F</url>
     <content type="text"><![CDATA[Tips目标可读性 可扩展 可维护 可靠性 安全性 性能 方法继承、封装、多态、接口 Tips 添加 优于 修改 接口 优于 (分解 + 继承) 少 if(类型) else 包装过程 基本原则 高内聚，低耦合。 该有的都有，有的都该有。 单一职责 类级别： UserDao –&gt; 只负责 User 表 类 足够简单 –&gt; 方法级 的 单一职责 接口隔离（最小接口，接口单一职责） 接口拆分 –&gt; 高内聚 接口用户不应该被迫实现 不必要的 方法 依赖倒转原则 核心思想： 面向 接口 编程（接口最底层、最抽象） 依赖方式： fun(接口) 成员变量 + 构造函数 成员变量 + setter 成员变量最好是 接口 （抽象类） 里氏替换原则 子类 要可以当成基类来用 子类尽量不要覆盖父类方法 @Override 断言是要覆盖，而不是 添加新方法 更多地去考虑接口、依赖（聚合、组合），而不是继承 开闭原则 对扩展开放，对修改关闭 接口 或 继承 继承可以用，但一定要结构清晰 OO最核心的是接口，而不是继承 低迷特法则 最少知道原则 外部类 不应成为 类方法的局部变量 更多地去提供 完整的服务 而不是 数据（业务层） getter 返回类型最好为 基本类型(字符串、JSON) 合成复用原则 考虑 组合/聚合 而不是 继承 组合(Composition) 构造函数 与生俱来的部分 聚合(Aggregation) setter 由外部生产，而后获得的资产 设计模式创建型单例 Singleton背景 只有一个实例对象 应用： 频繁被使用(数据源、全局变量) 重量级对象(创建耗费的资源较多) 实现 饿汉式，静态内部实例对象 ，线程安全 懒汉式 + 双重（避免在线程同步上浪费过多的效率）检查 枚举 推荐 原型模式 Prototype背景 赋值对象 模板化 创建 实例 直接拷贝，新建效率高 实现 implement Cloneable 注意 默认（super.clone(),即Object类的方法）的是 浅拷贝 深拷贝 clone方法：谨慎编写clone方法 序列化对象（推荐）： 创建 字节和对象 的 输入和输出 流 序列化（输出） 和 反序列化（读入，在这里可以获得一个新的对象 ，即我们要返回的复制结果） 设计简单，直接输入输出整个对象（就可以不用针对多种成员变量分别处理） 工厂 Factory Pattern背景 子类 定制服务 提供（实例化） 多样化 的 子类 对象 实现 简单工厂（静态工厂） 工厂方法模式（基类工厂 –&gt; 多种不同子类） 抽象工厂（接口） 建造者模式 Builder背景 工厂模式的区别是：建造者模式更加关注与零件装配的 顺序 工厂模式： 按类型 分发 材料自己负责 产品间差异很大（分类，多样化） Builder： 按流程 构造 接收外部材料 流程一样、程度不同（定制化） 实现 抽象工厂 产品对象 成员变量 抽象 的 配置方法 StringBuilder 封装了一个更加 高效（FuZa） 的 构造方法（GuoCheng） 结构型适配器模式 Adapter背景 兼容性 –&gt; 需要实现某个接口（提供特定方法） 不应该在 软件设计 过程中被考虑，而是在后期实际应用过程中发现有复用已有类(划掉)（对象、资源）的需求。 实现 继承 或 依赖（成员对象，推荐） 或 接口（推荐） 缺省适配器 不想实现目标接口的全部方法 添加一个 完全空实现 的 中间 抽象类 继承中间类，然后选择性覆盖 调用者提供一个对象（资源），然后交由适配器改变其 行为模式 桥接模式 Bridge背景 类爆炸 同样的一堆东西，按不同的标准，可以分成不同的类别（基类），不能以无脑继承的方式实现分类交叉，部分A是B，部分B是A。 约德尔人里有： 元素使 忍者 法师 纳尔（乱入） c++ 多继承 或可 避免类爆炸，但是，应尽量少考虑继承。 继承 与 接口： 虽然你是你爸生的，别人会当成你爸来用 但更重要的是后期学会的、拥有的东西（接口、成员变量） 实现 多继承 –&gt; 多接口 常见桥：Driver 驱动器 桥：抽象英雄类 类推：战舰 (日系 美系)（驱逐舰 巡洋舰） 装饰器 Decorator背景 单品饮料 + 额外调料 实现 继承 +（并且） 组合 组合 –&gt; 递归 改装后也还是船体，故可以再接改装。 先放一门主炮，然后作为新船体，再接着放一门主炮 … 组合模式 Composite背景 字面上的意思 树形结构，包含（组合）关系 组合模式 要求 所有层次的组件都源自一个基类 如 学校 学院 系 都是管理单元 这也意味着组件间差异性不能过大 那我还都是 Object 呢 &gt;_ 实现 有一个 集合/列表 成员变量 有 put 方法 外观模式 Facade过程模式 背景 封装 多而复杂的细节过程 –&gt; 中控 过程整合 如 init start 关闭一个个电器 –&gt; 拉闸 实现 中控 成员变量：各个子模块 方法：整合而成的控制过程 享元模式 Flyweight背景 避免频繁地创建对象 池、任务队列 线程池 内部状态：线程序列信息 外部状态：要执行的内容 代理模式 Proxy Pattern背景 中间层 直接访问对象开销过大（远程对象） 进行预处理、简单验证 内容缓存 完善功能。人性化，易用化。 扩展功能。如目标对象只提供数据，代理可以提供排序功能。 动态代理主要应用是在 AOP编程 中做一些诸如日志记录、权限验证等 简单统一 的业务，以相同的形式应用于每一个目标类方法。而静态代理的话可以针对目标类不同的方法，作不同的，较为复杂的处理。 动态 可以理解为 代理类的模板 与 外观模式 相似？ 外观模式 整合（封装）的可以是来自不同类（子模块）的功能 代理模式 只针对一个目标类 实现 静态代理 代理类与目标类是同层次的类（父类、接口相同） 代理类接收一个目标对象（或可直接包含），并简单地通过调用该对象实现相应的方法 动态 JDK代理 目标类必须包含接口（为了方便反射机制找到准确的目标类？） 反射 java.lang.reflect.ProxyProxy.newProxyInstance(tarObj.getClass().getClassLoader(), tarObj.getClass().getClassLoader(), new InvovationHandler(){ 匿名内部类 } ) 代理构造工厂TarObj proxyObj = (TarObj) new ProxyFactory(tarObj).getProxyInstance() 动态 Cglib代理 针对不包含接口的类 原理：动态构成子类，故目标不能为 final 类 构造代理的工厂 implement MethodInterceptor 行为型模板模式 Template实现 继承。 行为由父类控制（final方法），子类实现。 封装不变部分（final方法），扩展可变部分。 钩子方法：定义在父类的空方法，为子类的定制流程占位。 命令模式 Command Pattern背景 对比外观模式 外观模式：整合相关模块、相关过程，一个命令涉及多个步骤 命令模式：同一个命令有数量不定、类型不定的模块要接收 外观模式：控制器包含各个子模块， 命令是类方法 命令模式：命令也是类（独立对象），即 控制器包含的是命令的对象数组 外观模式：直接注册被控制对象 命令模式：注册的是命令（传令兵） 命令模式 可以 动态地添加 子模块（命令接收者） 实现 命令对象（命令接收者 + 相关行为( exec + undo )） 空命令 访问者模式 Visitor观察者模式 Observer背景 广播（通知变更）、事件触发 目的还是要减小单个类的体积(设计上就是要减少亲历亲为的情况)，一个类不应该自己来负责通知，增加一个中间件（观察者），单一职责 实现 被观察的类里放一个观察者们的List 策略模式 Strategy 个别子类与父类差异过大，但仍然想体现出与父类的某种关系 继承 –&gt; 接口、依赖]]></content>
+      <categories>
+        <category>软件工程</category>
+      </categories>
+      <tags>
+        <tag>Design Pattern</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Go]]></title>
-    <url>%2F2019%2F08%2F06%2Fpost-17%2F</url>
-    <content type="text"><![CDATA[Tips 云项目 高并发 简化编程语言相比于在臃肿的语言上不断增加新特性，会是更大的进步。]]></content>
+    <url>%2F2019%2F08%2F06%2Flang-go-1%2F</url>
+    <content type="text"><![CDATA[Tips 云项目 高并发 goroutine 简化编程语言相比于在臃肿的语言上不断增加新特性，会是更大的进步。 速度整体上优于Java，在像C方向努力 NextC，面向过程的语言 快速编译 目录结构src 文件夹 对应 代码包 根目录 为 main 包 pkg 归档，包编译完后的 .a 文件 bin 可执行文件 源码 .go命令源码 main包(src/),且含main方法，可以直接 go run + file.go 执行 多个命令源码可以分别 run 执行，但是项目 build 要求只有一个命令源码 库源码 包名 与 文件夹名 一致，且不包含 main 测试源码 文件名以 _test.go 结尾 需要包含一个函数： 类型为： testing.T 或 testing.B 名称开头为： Test 开头或 Benchmark go test 执行当前目录（包）下的所有 test 文件 包 package 工具包内也可声明为main包 import 别名： . : 相当于namespace _ : 引用而不使用，初始化，意义不明 包初始化 func init(){} 在 main 执行前，执行且只执行一次 基本语法语句结尾无需 “;” 基本类型 布尔 bool 字符串 string 整型 int int32(rune) 无符号 uint uint(byte) uintptr 浮点 float32 float64 复数 complex64 complex128 变量声明：var 变量名 变量类型自动类型 只能在函数内部使用：名字 := 表达式a,s:=1, &quot;abc&quot;直接初始化也可以：var attack = 40变量交换：b, a = a, b_ 匿名变量：垃圾桶，函数 返回多值 时 占位]]></content>
       <categories>
-        <category>日常</category>
+        <category>编程语言</category>
       </categories>
       <tags>
         <tag>Go</tag>
+        <tag>后端</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[Web 开发相关]]></title>
-    <url>%2F2019%2F08%2F05%2Fpost-16%2F</url>
+    <url>%2F2019%2F08%2F05%2Fweb-6%2F</url>
     <content type="text"><![CDATA[常见攻击 SQL 注入 XSS 跨站脚本攻击 利用站点自身提供的入口，提交脚本 XSRF 跨站请求伪造 猜测和获取目标站点的验证信息（cookie），通过伪造的站点对目标进行攻击 跨域- 正向代理 &amp; 反向代理]]></content>
       <categories>
-        <category>日常</category>
+        <category>Web</category>
       </categories>
       <tags>
         <tag>安全</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[vue]]></title>
-    <url>%2F2019%2F08%2F05%2Fpost-15%2F</url>
+    <url>%2F2019%2F08%2F05%2Fweb-5%2F</url>
     <content type="text"><![CDATA[基础 12345678910111213141516171819var data = &#123; message: &apos;Hello Vue.js!&apos;, somethings: 111&#125;var app = new Vue(&#123; el: &apos;#app-5&apos;, data: data, methods: &#123; reverseMessage: function () &#123; this.message = this.message.split(&apos;&apos;).reverse().join(&apos;&apos;) &#125; &#125;&#125;)数据绑定： app.message == data.message Object.freeze(obj) Vue 对象基本构成 el： data： methods: computed: 技术属性 定义的是方法，引用的是属性（数据） 仅在依赖数据变更是调用方法更新，否则直接引用计算结果 watch: function (val){ val 是 变更的数据 } 在数据变动时调用 components: 标签 v-bind v-bind:title=”msg” v-bind:href=”url” v-bind:id=”dynamicId” v-bind=”obj”(直接传递整个 对象 ) 简写： :href 含义：这是一个 JavaScript 表达式而不是一个字符串。一般是 动态 的 v-if=”todo” v-for=”todo in todos” v-on:click=”func” 简写： @click .passive 立即触发,尤其能够提升移动端的性能 $emit v-model=”bind-value” 表单 vue 对象属性 vm.$el === document.getElementById(‘example’) vm.$watch(‘a’, ()=&gt;{…}) Hooks created updated destroyed 不要在选项属性或回调上使用箭头函数(就是在说上面那样的)，可能会有导致错误 组件12345678Vue.component(&apos;button-counter&apos;, &#123; data: function () &#123; return &#123; count: 0 &#125; &#125;, template: &apos;&lt;button v-on:click=&quot;count++&quot;&gt;You clicked me &#123;&#123; count &#125;&#125; times.&lt;/button&gt;&apos;&#125;) 基本构成 组件名 data 得是方法 js 变量 作用域 问题 props props:[‘koisi’] type type 还可以是一个自定义的构造函数 并且通过 instanceof 来进行检查确认 validator 自定义验证函数 template 完全替换(包括标签) 渲染函数 render 一般 template 就够了 vuex 数据源管理]]></content>
       <categories>
-        <category>开发</category>
+        <category>Web</category>
       </categories>
       <tags>
         <tag>前端</tag>
@@ -77,22 +96,22 @@
   </entry>
   <entry>
     <title><![CDATA[Node js]]></title>
-    <url>%2F2019%2F08%2F02%2Fpost-14%2F</url>
+    <url>%2F2019%2F08%2F02%2Fweb-3%2F</url>
     <content type="text"><![CDATA[基础异步 回调 例子 回调函数 回调函数 作为 请求函数 的 最后一个参数 回调函数的 第一个参数 为 err(错误对象)service( arg, (err , data) =&gt; { ... }) 事件 Node.js 是单进程单线程应用程序。通过 异步 实现 高并发。 观察者模式 var events = require(‘events’) 方法: on, emit Buffer 二进制模块 exports require 多进程其他全局变量 dirname 和 filename ES Modules 模块化为你提供了一种更好的方式来组织 变量（作用域）和 函数 常用包webpackGulp：手动编写配置步骤Webpack：自动从入口文件开始检查所有依赖 axios微型 HTTP 客户端。生成 和 接收 HTTP 请求。 mock测试工具]]></content>
       <categories>
-        <category>开发</category>
+        <category>Web</category>
       </categories>
       <tags>
-        <tag>Node</tag>
         <tag>后端</tag>
+        <tag>Node</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[RESTful API]]></title>
-    <url>%2F2019%2F08%2F02%2Fpost-13%2F</url>
+    <url>%2F2019%2F08%2F02%2Fswe-1%2F</url>
     <content type="text"><![CDATA[阮一峰 URL 设计 动词 + 宾语 GET /articles HTTP 方法： GET 获取 POST 新建 PUT 整体 更新 PATCH 部分 更新 DELETE 删除 X-HTTP-Method-Override 复数形式 GET /articles/2 避免多级 除了第一级，其他级别都用查询字符串表达 GET /authors/12/categories/2 GET /authors/12?categories=2 GET /articles/published GET /articles?published=true ? –&gt; 过滤器 状态码 1xx 相关信息 AJAX 里不涉及 2xx 成功 POST 201 创建成功 DELETE 204 资源已经不存在 202 已经收到请求，还未处理 异步 3xx 重定向 303 See Other 4xx 客户端错误 400 请求不明、错误 401 认证失败 405 权限不足 404 资源不存在 5xx 服务器错误 500 服务器出错了、怎么滴 503 维护 服务器回应 不要返回纯本文 Content-Type application/json 安全与幂等 安全 –&gt; 只读 幂等 –&gt; 可多次执行 POST 对某一对象，只能创建一次]]></content>
       <categories>
-        <category>开发</category>
+        <category>软件工程</category>
       </categories>
       <tags>
         <tag>RESTful</tag>
@@ -100,10 +119,10 @@
   </entry>
   <entry>
     <title><![CDATA[Web 基础知识]]></title>
-    <url>%2F2019%2F08%2F02%2Fpost-12%2F</url>
-    <content type="text"><![CDATA[Terms CGI，Common Gateway Interface，通用网关接口 HTTP GET 和 POST get内容在URL中 get应该只用于 取回数据 post内容在http报头中Html5标签 !DOCTYPE html&gt; 声明为 HTML5 文档 h p(paragraph) a img&gt; /&gt; 文本格式化 定义粗体文本 定义着重文字 定义斜体字 定义小号字 定义加重语气 定义下标字 定义上标字 定义插入字 定义删除字 表格 Header 1 Header 2 row 2, cell 1 row 2, cell 2 无序列表CoffeeMilk 有序列表CoffeeMilk div(块级，会换行) span（内联元素，不换行） 表单 form input button iframe（src，a+target 属性 class id target=”_blank” 新页面中打开 141个颜色名称 xhtml基于 xml 编写规范的 html 新特性 新标签 header footer aside nav section canvas 多媒体 video audio CSS 3 存储 localStorage sessionStorage 应用级缓存 Application Cache html manifest=”demo.appcache” WebSocket 持久性的连接，允许服务端主动向客户端推送数据 通过 JavaScript JavaScript 基础基于 ECMAScript 规范 document 对象 innerHTML 基础 数组 [1,3,3] 对象 {a:123,b:”name”} 变量在函数外定义，即为全局变量。 JavaScript 闭包 函数内定义函数，解决没有 static 变量 jQuery 选择器 元素 $(“p”) id $(“#test”) class $(“.test”) 事件 效果、动画 AJAX AJAX用 JavaScript 操作、修改 DOM XMLHttpRequest 对象 Async=true 异步(事件:onreadystatechange) responseText/responseXML $.ajax({name:value, name:value, … }) 其他 (function{})()]]></content>
+    <url>%2F2019%2F08%2F02%2Fweb-2%2F</url>
+    <content type="text"><![CDATA[Terms CGI，Common Gateway Interface，通用网关接口 HTTP GET 和 POST get内容在URL中 get应该只用于 取回数据 post内容在http报文中Html5标签 !DOCTYPE html&gt; 声明为 HTML5 文档 h p(paragraph) a img&gt; /&gt; 文本格式化 定义粗体文本 定义着重文字 定义斜体字 定义小号字 定义加重语气 定义下标字 定义上标字 定义插入字 定义删除字 表格 Header 1 Header 2 row 2, cell 1 row 2, cell 2 无序列表CoffeeMilk 有序列表CoffeeMilk div(块级，会换行) span（内联元素，不换行） 表单 form input button iframe（src，a+target 属性 class id target=”_blank” 新页面中打开 141个颜色名称 xhtml基于 xml 编写规范的 html 新特性 新标签 header footer aside nav section canvas 多媒体 video audio CSS 3 存储 localStorage sessionStorage 应用级缓存 Application Cache html manifest=”demo.appcache” WebSocket 持久性的连接，允许服务端主动向客户端推送数据 通过 JavaScript JavaScript 基础基于 ECMAScript 规范 document 对象 innerHTML 基础 数组 [1,3,3] 对象 {a:123,b:”name”} 变量在函数外定义，即为全局变量。 JavaScript 闭包 函数内定义函数，解决没有 static 变量 jQuery 选择器 元素 $(“p”) id $(“#test”) class $(“.test”) 事件 效果、动画 AJAX AJAX用 JavaScript 操作、修改 DOM XMLHttpRequest 对象 Async=true 异步(事件:onreadystatechange) responseText/responseXML $.ajax({name:value, name:value, … }) 其他 (function{})()]]></content>
       <categories>
-        <category>开发</category>
+        <category>Web</category>
       </categories>
       <tags>
         <tag>前端</tag>
@@ -114,10 +133,10 @@
   </entry>
   <entry>
     <title><![CDATA[Thymeleaf]]></title>
-    <url>%2F2019%2F07%2F31%2Fpost-11%2F</url>
+    <url>%2F2019%2F07%2F31%2Fweb-1%2F</url>
     <content type="text"><![CDATA[引入&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt; 标签 th:text=”${description}” 表达式语法 变量表达式： ${…} 选择变量表达式： *{…} 信息表达式： #{…} 链接 URL 表达式： @{…} 分段表达式： ~{…}字面量 字符串： ‘one text’ 数字： 0, 34, 3.0 布尔值： true, false Null 值： null 字面量标记：one, sometext文本运算 字符串拼接： + 字面量置换: |The name is ${name}|比较运算 比较： &gt;, &lt;, &gt;=, &lt;= (gt, lt, ge, le) 相等运算符： ==, != (eq, ne)特殊语法 无操作： _]]></content>
       <categories>
-        <category>开发</category>
+        <category>Web</category>
       </categories>
       <tags>
         <tag>Thymeleaf</tag>
@@ -126,10 +145,10 @@
   </entry>
   <entry>
     <title><![CDATA[Spring boot]]></title>
-    <url>%2F2019%2F07%2F25%2Fpost-10%2F</url>
+    <url>%2F2019%2F07%2F25%2Ffw-spring-2%2F</url>
     <content type="text"><![CDATA[概要 习惯优先于配置 (前后端分离，可无视) 内嵌 Servlet 容器：Tomcat 、 Jetty 前后端分离 前端 &lt;– 跳转逻辑和页面交互 后端 只负责提供接口数据 RESTful api 前端工作更重，除非后端有复杂的算法设计 主要是易扩展 前后端可独立出来，中间是一般的 RESTful 交流。前端可选框架更多，VUE等，脱离Java，可使用 Nginx。 Maven mvn 类似 –&gt; npm编译、依赖、打包、运行、文档 AJAX Asynchronous JavaScript and XML（异步的 JavaScript 和 XML） 编程方法、标准、设计模式 RESTful apiRepresentational State Transfer 基本原则 URI，Universal Resource Identifier 尽量 全小写 尽量 不用 动词 集合 用 复数形式 HTTP 协议 动词 GET，获取 POST，新建 PUT，更新 完整的 PATCH，更新 部分属性 DELETE，删除资源 状态码 200 成功 401 无权限（用户行为错误） 5xx 服务器错误（拥塞..） 安全原则 Authentication 和 Permission 常用的认证机制是 Basic Auth 和 OAuth CORS，Cross-origin resource sharing 注解 @responseBody，将返回结果转化为 JSON or XML 后，填充到目标 body @Param，简化 MyBatis 中 mapper.xml 的配置 事务 &amp; AOP声明式事务： xml @Transactional（其他：编程式事务）声明式事务是建立在 AOP 机制之上的，其本质是 **对方法前后进行拦截** 其他组件Redis日志型、Key-Value数据库 @Scheduled 实现定时任务入口 Application 需添加 @EnableScheduling SwaggerRESTful API文档、接口测试 @ApiOperation @ApiImplicitParams @ApiImplicitParamSpring Boot Admin资源、性能监控 @EnableAdminServer spring.boot.admin.client.url=http://localhost:port 目录结构（开发结构）entityDao 数据连接对象@Repository（一般不用，有xml） dao接口包 mapper 中基于 Mybatis 的 xml 对象（beans） Service 层@service 当项目的业务逻辑简单时，可选择service层=service类； 当项目的业务复杂时，可选择service层=service接口+serviceImpl实现类； Controller 层@Controller or @RestController（包含 @ResponseBody） @component普通的、一般的 Bean，如 定时任务 自定义路径映射SpringBootWebMvcConfigurerregistry.addResourceHandler(&quot;/files/**&quot;).addResourceLocations(&quot;file:/home/user/folder/&quot;); 项目配置application.properties 日志 logging.level.pkg.pkg=level logging.path/logging.file http服务 server.port=8082 spring.resources.static-locations=classpath:/folderA/,classpath:/folderB/ server.servlet.context-path=/shiyanlou/ 文件上传 MultipartResolver spring.servlet.multipart.max-file-size 数据库相关 mybatis.mapper-locations=classpath:mapper/*Dao.xml]]></content>
       <categories>
-        <category>开发</category>
+        <category>开发框架</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -138,10 +157,10 @@
   </entry>
   <entry>
     <title><![CDATA[Spring poi >_]]></title>
-    <url>%2F2019%2F07%2F22%2Fpost-9%2F</url>
+    <url>%2F2019%2F07%2F22%2Ffw-spring-1%2F</url>
     <content type="text"><![CDATA[Terms 依赖注入（DI，Dependency Injection）依赖注入是控制反转的一个具体的例子。 控制反转（IoC，Inversion of Control） 面向切片的程序设计（AOP，Aspect Oriented Programming）在 OOP 中模块化的关键单元是类，而在 AOP 中模块化的关键单元是方面。 ORM，Object Relational Mapping OXM，Object XML Mapping JPA，Java Persistence API，Java持久层API JSP，Java Server Pages or Servlet CGI，Common Gateway Interface，通用网关接口 POJO，Plain Ordinary Java Object，平滑简单的Java对象，一般只有一些属性和get、set、is方法，没有复杂的业务逻辑、方法，有时可以作为VO(value -object)或DTO(Data Transform Object)来使用 PO，Persistent Object，持久对象 DAO，Data Access Object，数据访问对象 Spring Beans写在xml文件里,get、set必须和属性对应 三种获得途径 本地绝对路径，FileSystemXmlApplicationContext CLASSPATH，ClassPathXmlApplicationContext Web路径，WebXmlApplicationContext 作用域 Scopes singleton 单例 prototype 原型，即不是单例 其他，Web相关：request，session，global-session 生命周期 Life Cycle 可选 init-method or destroy-method Bean 后置处理器 允许在调用 初始化方法 前后 对 Bean 进行额外的处理。 继承 or 模板 abstract=”true” parent=”beanTeamplate” 依赖注入 DI constructor-arg property12345678910111213141516一般， new Obj：public class TextEditor &#123; private SpellChecker spellChecker; public TextEditor() &#123; spellChecker = new SpellChecker(); &#125;&#125;IoC， 传参：public class TextEditor &#123; private SpellChecker spellChecker; public TextEditor(SpellChecker spellChecker) &#123; this.spellChecker = spellChecker; &#125;&#125;ps： 问题场景 --&gt; 依赖类 构造方法带参数 or 可变。非 IoC 需要在自身内部变动。 基于构造函数 &lt;constructor-arg ref=&quot;spellChecker&quot;/&gt; 多个参数，按序或者指定index value：传值（基本类型），ref：引用（对象） 基于 setter &lt;property name=&quot;spellChecker&quot; ref=&quot;spellChecker&quot;/&gt; 严格要有一个 setObjxxx(…) 方法ps: &lt;property name=&quot;..&quot; (value or ref)=&quot;..&quot;/&gt; 可简写为 p:..=&quot;..&quot; or p:..-ref=&quot;..&quot; value Of 集合： list set map props 自动装配 autowire byName byType constructor (对构造函数基于 参数 Type 匹配) autodetect (constructor –&gt; byType)ps：一般都是单例，一个类型只有一个，故可以 byType。针对非基本类型，即引用（bean）。 注解 初级 @Required 针对 setter 方法。可不写，编译时提示性作用，提示要xml。 @Autowired byType，针对整个类（bean）or 方法、属性。即 都可以。必须，如果 不写xml 的话。 @Qualifier 辅助 Autowired，有多个相同 Type 的 Bean 的生活。ps：@Autowired(required=false) 允许为 null 其他 @PostConstruct @PreDestroy 替代 xml 中的 init-method、destroy-method @Resource(name= “…”) byName，可以替代xml，（..）可省略、自动获取 高级，针对 Bean 的注解 @Configuration 修饰 类，指明该类是 Bean 的生成工厂（配置区域、定义来源、上下文、同xml）。 @Bean 修饰方法，该方法会返回一个 Bean（属性设置完毕，准备就绪的Obj），其 id 为 方法名。 @Import 导入 别的 @Configuration 上下文。ps：这样配置下的 Bean 相互依赖的话，不用进行额外的设置。 事件 Event of Context捕获和处理：class BeanExp implements ApplicationListener&lt;...Event&gt;一般有：ContextRefreshedEvent ContextStartedEvent ContextStoppedEvent ContextClosedEvent RequestHandledEvent 自定义事件12345671. 定义 Event：public class CustomEvent extends ApplicationEvent2. 发布 Event：implements ApplicationEventPublisherAware;ApplicationEventPublisher publisher;publisher.publishEvent(CustomEventObj); AOP在 OOP 中，关键单元模块度是类，而在 AOP 中单元模块度是方面。Spring AOP 模块提供 拦截器 来拦截一个应用程序。 Spring JDBCMapper事物 ACID 原子 一致 隔离 持久 Spring MVC@Controller 指定一个 类 是 控制器 @RequestMapping(URL) 修饰 类 or 方法。以 第一处 作 相对路径。-]]></content>
       <categories>
-        <category>开发</category>
+        <category>开发框架</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -150,10 +169,10 @@
   </entry>
   <entry>
     <title><![CDATA[Java 开发笔记]]></title>
-    <url>%2F2019%2F07%2F11%2Fpost-8%2F</url>
+    <url>%2F2019%2F07%2F11%2Flang-java-3%2F</url>
     <content type="text"><![CDATA[概念 serializable 序列化 使实例对象可存储、永久存在，方便恢复和复用]]></content>
       <categories>
-        <category>开发</category>
+        <category>Dev</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -161,10 +180,10 @@
   </entry>
   <entry>
     <title><![CDATA[Java 核心技术 (◔౪◔)]]></title>
-    <url>%2F2019%2F07%2F10%2Fpost-7%2F</url>
+    <url>%2F2019%2F07%2F10%2Flang-java-2%2F</url>
     <content type="text"><![CDATA[继承、接口、多态继承 super父类引用 super（）父类构造方法 equals（Object类方法）默认使用 == 需重写（覆盖） 重载 函数名相同，参数不同 向上转型（安全） 向下转型（先确认类型，然后显式转换，instanceof） 不定长参数方法: type fun(type…arg) == fun(type[] args) 接口 关键字 interface 纯粹的抽象类 对比多态（抽象方法） 父类可不抽象，部分子类可不实现 方法只能为 public abstract, 故省略 类的高级方法 类包 final方法 不可重写 final类 不能被继承 内部类 局部类 匿名类 异常处理try catch finally 反射Object类的一些方法 getName() 获得类的名称(是个String) getInterfaces() 获得接口 Class对象数组 getClass() Class对象 getConstructors() 为public的构造函数数组 用途：获得类的类型、成员变量、方法（可以是私密的） 多线程、网络通信、数据库操作]]></content>
       <categories>
-        <category>开发</category>
+        <category>编程语言</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -172,10 +191,10 @@
   </entry>
   <entry>
     <title><![CDATA[从〇开始的Java学习]]></title>
-    <url>%2F2019%2F07%2F09%2Fpost-6%2F</url>
+    <url>%2F2019%2F07%2F09%2Flang-java-1%2F</url>
     <content type="text"><![CDATA[Java 语言基础 pubilc static void main (String[] args){} final 定义时赋初始值 类名.静态变量 浮点类型： float 12.25f（默认为double，所以要加f or F）（double 可选加D、d） boolean 整数 负数的第一位为1，补码 变量范围，所在 { } 内？static，往外一层？ 运算符 赋值 = ⬅ ＝ ⬅ 逻辑运算：与 （&amp;&amp; 先判断左边的 or &amp; ） 或 （||） 非 （！） 位运算 与&amp; 或| 取反~ 异^（指数运算得用函数） 移位 &lt;&lt;（补0） &gt;&gt;(第一位为1则补1) &gt;&gt;&gt;（都补0） 三元运算符 条件式？true：false； 显式（强制）类型转换 int a = (int)45. 注释与编码规范注释 //单行 / / /* / 文档注释 Javadoc 规范 命令要 ； 结尾 流程控制可以利用{}创建局部变量作用域 if1234567if()&#123; ...&#125; else if()&#123; ...&#125; else &#123; ...&#125; 单句可省略{} switch可为字符串类型 while for | foreach 指 for（ x; arr)字符串String str (未初始化 == null) 连接： String s = strA + “ “ + strB + oneInt; == 比较的是地址， str.equals(otherStr) 创建的字符串，内容不可修改（频繁申请和销毁内存空间) 易变： StringBuffer（线程安全） 和 StringBuilder（快） 格式化12345String fs;fs = String.format(&quot;浮点型变量的值为 &quot; + &quot;%f, 整型变量的值为 &quot; + &quot; %d, 字符串变量的值为 &quot; + &quot; %s&quot;, floatVar, intVar, stringVar); 正则12String regex=&quot;.....&quot;;str.matches(regex); 数组123456789int arrA[] = new int[]&#123;1,2.3&#125;;int arrB[] = &#123;1,1,2,2&#125;;int arrC[][] = new int[2][4];int arrD[][] = new int[2][];arrD[0] = new int[2];arrD[1] = new int[3];int arrE[][] = new int[][]&#123;&#123;1&#125;,&#123;2,3&#125;,&#123;4,5,6&#125;&#125;; 面向对象 类 实例化 —&gt; 对象 封装、继承、多态（使用父类方法、抽象函数、c++虚函数、可用接口替代） 类先写变量 后方法（定义和声明不分开） this 引用 静态方法不可使用this以及调用非静态方法 Java只能有静态类成员变量，没有方法中的静态局部变量 static{} 类初始化的 静态区域]]></content>
       <categories>
-        <category>开发</category>
+        <category>编程语言</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -183,10 +202,10 @@
   </entry>
   <entry>
     <title><![CDATA[vim 配置]]></title>
-    <url>%2F2019%2F04%2F21%2Fpost-5%2F</url>
+    <url>%2F2019%2F04%2F21%2Flinux-3%2F</url>
     <content type="text"><![CDATA[……好吧，有现成的。指路 –&gt; vimplus]]></content>
       <categories>
-        <category>开发</category>
+        <category>Tools</category>
       </categories>
       <tags>
         <tag>vim</tag>
@@ -194,10 +213,10 @@
   </entry>
   <entry>
     <title><![CDATA[Nginx 配置]]></title>
-    <url>%2F2019%2F04%2F19%2Fpost-4%2F</url>
+    <url>%2F2019%2F04%2F19%2Flinux-Nginx-1%2F</url>
     <content type="text"><![CDATA[安装sudo apt-get updatesudo apt-get install nginx 防火墙查看可用脚本sudo ufw app list允许 80 和 443 端口sudo ufw allow &#39;Nginx Full&#39;开机启动防火墙sudo ufw enable systemctl 控制1234sudo systemctl status nginxsudo systemctl stop nginxsudo systemctl start nginxsudo systemctl restart nginx 文件配置Nginx配置目录: /etc/nginx 站点响应 添加 /etc/nginx/sites-available/example.com 12345678910111213server &#123; listen 80; listen [::]:80; root /.../.../example; index index.html index.htm index.nginx-debian.html; server_name example.com www.example.com; location / &#123; try_files $uri $uri/ =404; &#125;&#125; 链接sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/ 日志/var/log/nginx]]></content>
       <categories>
-        <category>运维</category>
+        <category>Ops</category>
       </categories>
       <tags>
         <tag>Linux</tag>
@@ -206,10 +225,10 @@
   </entry>
   <entry>
     <title><![CDATA[OpenWrt -- 利用 SDK 进行交叉编译]]></title>
-    <url>%2F2019%2F04%2F17%2Fpost-3%2F</url>
+    <url>%2F2019%2F04%2F17%2Flinux-OpenWrt-1%2F</url>
     <content type="text"><![CDATA[安装SDK 到OpenWrt官网下载对应的SDK包：https://downloads.openwrt.org/releases/17.01.4/targets/x86/64/ 文件名大概长这样：lede-sdk-17.01.4-x86-64_gcc-5.4.0_musl-1.1.16.Linux-x86_64.tar.xz 解压到合适的地方，配置环境变量： 123export OWRT=/home/coeo/IDE/openwrt-sdk/staging_dir/toolchain-x86_64_gcc-5.4.0_musl-1.1.16/binexport STAGING_DIR=/home/coeo/IDE/openwrt-sdk/staging_direxport PATH=$OWRT:$PATH 检查是否配置成功： 123source ~/.zshrc然后应该可以自动补全：x86_64-openwrt-linux-gcc 编译直接编译成可执行文件，然后使用scp上传至路由器。 环境依赖123sudo apt install subversion g++ zlib1g-dev build-essential git python timesudo apt install libncurses5-dev gawk gettext unzip file libssl-dev wgetsudo apt install libelf-dev 添加函数库如果有用到函数库，需要注意SDK是否支持对应的库。比如下面会用到libpcap和mysql，但是SDK里并没有预装。到SDK根目录下： 更新包目录(要先把上面的依赖装好)./scripts/feeds update -a 安装指定包（仅含配置文件）./scripts/feeds install libpcap./scripts/feeds install mysql-server 编译包make package/libpcap/compilemake package/mysql/compile Makefile123456789101112131415161718192021222324252627OBJS = rls.o main.oTAR = o.oCC = x86_64-openwrt-linux-gccTOPDIR = /home/coeo/IDE/openwrt-sdkLDFLAGS += -L$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/lib/LDFLAGS += -L$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/lib/mysql/LIBS += -lmysqlclient -lpthread -lz -lm -lrt -latomic -ldl -lpcapCFLAGS += -I$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/include/CFLAGS += -I$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/include/mysql/CFLAGS += -I$(TOPDIR)/staging_dir/target-x86_64_musl-1.1.16/usr/include/pcap/$(TAR) : $(OBJS) $(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) $(OBJS) -o $(TAR)main.o : Main.c $(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) -c Main.c -o main.orls.o : ReLitSniffer.h ReLitSniffer.c $(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) -c ReLitSniffer.c -o rls.o.PHONY : cleanclean : rm $(TAR) $(OBJS) VMWare 安装 OpenWrt原文由于原版的镜像比较小，可能会有进行扩展的需要 准备一个Ubuntu 虚拟机 挂载到Ubuntu虚拟机（IDE格式），并扩展到所需的大小 使用fdisk -l找到挂载过来的磁盘 比如是/dev/sda，然后就用fdisk /dev/sda 12345678910p(记住第二个分区的起点)d(删除节点)2n(新建)p(分区类型：主分区)2原来分区的起点分区终点(默认)nw umount /dev/sda2 e2fsck -f /dev/sda2 resize2fs /dev/sda2]]></content>
       <categories>
-        <category>开发</category>
+        <category>Dev</category>
       </categories>
       <tags>
         <tag>Linux</tag>
@@ -217,22 +236,23 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux 运维]]></title>
-    <url>%2F2019%2F03%2F17%2Fpost-2%2F</url>
+    <title><![CDATA[Linux 常用命令]]></title>
+    <url>%2F2019%2F03%2F17%2Flinux-2%2F</url>
     <content type="text"><![CDATA[常用命令nohup &amp; &amp;&amp; | || nohup 脱离当前终端到后台执行 &amp; 后台执行，会随着终端一起关闭 &amp;&amp; 前一个执行成功再执行下一个 ‘|’ 管道，上一个的输出作为下一条命令的参数 ‘||’ 前面执行失败，再执行后面的 重定向 ‘&gt;’ 覆盖 ‘&gt;&gt;’ 追加 ‘&lt;’ 输入重定向，如导入 sql 文件的时候就会用到了 Mysql备份和恢复12345mysqldump -uroot -p -P3306 --databases ikazuchi &gt; ika.sqlmysqldump -uroot -p -P3306 ikazuchi table &gt; table.sqlmysql -uroot -p ikazuchi &lt; ika.sql CURD INSERTINSERT INTO ripe ( id, tag) VALUES ( %s, %s) UPDATEUPDATE ripe SET ta = %s WHERE id = %s SELECTSELECT MAX(tv_sec) FROM ripe WHERE … DELETEDELETE FROM ripe WHERE … 判断是否为 NULLIS NULLIS NOT NULL 设置为 NULLcol = NULL 将一个表的数据插入另一个表INSERT INTO tableA ( colA, colB) SELECT colA, colB FROM tableB WHERE … 查询某一列的取值select distinct col from table]]></content>
       <categories>
-        <category>运维</category>
+        <category>Ops</category>
       </categories>
       <tags>
         <tag>Linux</tag>
+        <tag>Mysql</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[记 一个强迫症患者 对 重装系统 的 执着]]></title>
-    <url>%2F2019%2F03%2F10%2Fpost-1%2F</url>
+    <url>%2F2019%2F03%2F10%2Flinux-1%2F</url>
     <content type="text"><![CDATA[配置开发环境gcc g++ libpcap java ipython zsh onmyzsh 开发工具vim atom git workbench Python包scapy matplotlib pymysql 软件工具rime mozcchrome梯子wireshark 主题配置gnome-tweak-toolnumix-gtk-themedockdynamic-top-barfreon 快捷方式sudo ln -sT /home/user_name/folder/ /home/user_name/desktop/folder 一些有趣的命令1234567cmatrix -b -Ccyanfactorfor i in &#123;1..5&#125;;do echo `fortune`|cowsay|lolcat;donefuck 挂起、后台执行alias ecp=’nohup /home/coeo/IDE/eclipse/eclipse &amp;’ 备份12345sudo sucd /tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz \--exclude=/mnt --exclude=/sys --exclude=/media / c - 新建一个文档v - 详细模式， tar程序将在屏幕上实时输出所有信息p - 保存许可，并应用到所有文件z - 采用‘gzip’压缩备份文件，以减小备份文件体积f - 说明备份文件存放的路径，backup.tgz “/“ 是我们要备份的目录，在这里是整个文件系统 在备份命令结束时可能会看到这样一个提示：’tar: Error exit delayed from previous errors’，多数情况下可以忽略 还原如果原来的Ubuntu系统已经崩溃，无法进入。则可以使用Ubuntu安装U盘（live USB）进入试用Ubuntu界面。切换到root用户，找到之前Ubuntu系统的根目录所在磁盘分区，一般为/dev/sdaX。1234567891011121314先把它挂载出来：sudo mount /dev/sdaX /mnt/sdaX删除该根目录下的所有文件：sudo rm -rf /mnt/sdaX将备份文件”backup.tgz”拷入该分区：sudo cp backup.tgz /mnt/sdaX进入分区并将压缩文件解压缩，参数x是告诉tar程序解压文件。sudo tar xvpfz backup.tgz重新创建那些在备份时被排除在外的目录：sudo mkdir proc lost+found mnt sys media 重启 &gt;_]]></content>
       <categories>
-        <category>运维</category>
+        <category>Ops</category>
       </categories>
       <tags>
         <tag>Linux</tag>
@@ -240,7 +260,7 @@
   </entry>
   <entry>
     <title><![CDATA[ありがとう - 东方歴絵巻(幽闭サテライト×白狐茶会)]]></title>
-    <url>%2F2019%2F02%2F19%2Fpost%2F</url>
+    <url>%2F2019%2F02%2F19%2Fkoisi-1%2F</url>
     <content type="text"><![CDATA[この目で計れない霞む過去や未来は触れられぬ事実となり、また幻になるだろう神などいるのでしょうか信じてみたけれど都合良いものじゃないとつい忘れてしまった 亡き者を想えば悲しいのだけど安心できる見返りなどいらぬそんな矛盾 愛の歴史 行く当てなどないでしょうそれでも 無意味では無い「ありがとう」 この身体生まれてきたよ優しい気持ちはすぐに忘れがちだけれども「ありがとう」 この気持ち心に刻んだよ 善人にはなれぬ気付いたのさ いつしかできるだけ清々しい生き方で良い気がする 行く当てなどないでしょうそれでも 無意味では無い「ありがとう」 この身体生まれてきたよ優しい気持ちはすぐに忘れがちだけれども「ありがとう」 この気持ち忘れたくない貴方を想うと心が洗われてゆく「ありがとう、おやすみ」この足で歩くよ]]></content>
       <categories>
         <category>日常</category>
