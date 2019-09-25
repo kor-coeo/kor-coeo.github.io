@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="蛍火の杜">
 <meta property="og:description" content="Terms 依赖注入（DI，Dependency Injection）依赖注入是控制反转的一个具体的例子。 控制反转（IoC，Inversion of Control） 面向切片的程序设计（AOP，Aspect Oriented Programming）在 OOP 中模块化的关键单元是类，而在 AOP 中模块化的关键单元是方面。 ORM，Object Relational Mapping OXM，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-02T03:18:37.764Z">
+<meta property="og:updated_time" content="2019-09-04T06:38:03.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring poi &gt;_">
 <meta name="twitter:description" content="Terms 依赖注入（DI，Dependency Injection）依赖注入是控制反转的一个具体的例子。 控制反转（IoC，Inversion of Control） 面向切片的程序设计（AOP，Aspect Oriented Programming）在 OOP 中模块化的关键单元是类，而在 AOP 中模块化的关键单元是方面。 ORM，Object Relational Mapping OXM，">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-02 11:18:37" itemprop="dateModified" datetime="2019-09-02T11:18:37+08:00">2019-09-02</time>
+                <time title="修改时间：2019-09-04 14:38:03" itemprop="dateModified" datetime="2019-09-04T14:38:03+08:00">2019-09-04</time>
               
             
           </span>
@@ -515,13 +515,13 @@
 <li>Web路径，WebXmlApplicationContext</li>
 </ul>
 <h3 id="作用域-Scopes"><a href="#作用域-Scopes" class="headerlink" title="作用域 Scopes"></a>作用域 Scopes</h3><ul>
-<li>singleton 单例</li>
+<li>singleton 单例(默认)</li>
 <li>prototype 原型，即不是单例</li>
 <li>其他，Web相关：request，session，global-session</li>
 </ul>
 <h3 id="生命周期-Life-Cycle"><a href="#生命周期-Life-Cycle" class="headerlink" title="生命周期 Life Cycle"></a>生命周期 Life Cycle</h3><ul>
 <li>可选 init-method or destroy-method</li>
-<li>Bean 后置处理器 允许在调用 初始化方法 前后 对 Bean 进行额外的处理。</li>
+<li>Bean 后置处理器 允许在调用 初始化方法 前后 对 Bean 进行额外的处理。(实现 BeanPostProcessot接口)</li>
 </ul>
 <h3 id="继承-or-模板"><a href="#继承-or-模板" class="headerlink" title="继承 or 模板"></a>继承 or 模板</h3><ul>
 <li>abstract=”true”</li>
@@ -552,7 +552,7 @@
 <li>初级<ul>
 <li>@Required 针对 setter 方法。可不写，编译时提示性作用，提示要xml。</li>
 <li>@Autowired byType，<del>针对整个类（bean）</del>or 方法、属性。即 都可以。必须，如果 不写xml 的话。</li>
-<li>@Qualifier 辅助 Autowired，有多个相同 Type 的 Bean 的生活。<br>ps：@Autowired(required=false)  允许为 null</li>
+<li>@Qualifier(“bean-id”) 辅助 Autowired，有多个相同 Type 的 Bean 的生活。<br>ps：@Autowired(required=false)  允许为 null</li>
 </ul>
 </li>
 <li>其他<ul>
@@ -703,7 +703,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -738,7 +738,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -807,7 +809,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">26</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
