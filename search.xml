@@ -35,15 +35,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS 配置]]></title>
-    <url>%2F2019%2F09%2F10%2Flinux-centos-1%2F</url>
-    <content type="text"><![CDATA[用户管理useradd {name-poi} -U -m m: create home U: create the same name group G: addition group passwd {name-poi}visudo分配 sudo 权限 Group groupadd admin usermod -G 添加附加组 newgrp g-name 更新用户组(手动编辑文件的话) 查看 cat /etc/passwd /etc/group 这里可以将用户从组中移除 防火墙 firewall firewall-cmd --state 检查是否正在运行 开启、关闭 systemctl start/stop/restart firewalld systemctl enable/disable firewalld 开机启动 应急模式（应急模式阻断所有网络连接，防止出现紧急状况） firewall-cmd --query-panic firewall-cmd --panic-on/off 端口配置 检查 firewall-cmd --query-port=80/tcp firewall-cmd --zone=public --list-ports firewall-cmd --list-services firewall-cmd --list-all 配置 firewall-cmd --add-port=80/tcp --permanent –permanent重启保留 firewall-cmd --remove-port=80/tcp firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;192.168.11.0/24&quot; port protocol=&quot;tcp&quot; port=&quot;6689&quot; accept&quot;这种需要firewall-cmd --reload 移除规则vim /etc/firewalld/zones/public.xml ssh查看登录记录 who /var/log/wtmp more /var/log/secure 修改端口 vim /etc/ssh/sshd_config 123Port 22# 可以添加多个Port 233 重启 systemctl restart sshd.service systemctl status sshd.service查看信息:error: Bind to port 233 on 0.0.0.0 failed: Permission denied 需要临时关闭SELinux SELinux getenforce查看是否启用 setenforce 0临时关闭 setenforce 1启用 iptables未使用，先略 iptables -A INPUT -s 192.168.99.0/24 -p tcp --dport 22 -j ACCEPT 永久生效 service iptables save cat /etc/sysconfig/iptables RSA vim .ssh/authorized_keys 放入 id_rsa.pub vim /etc/ssh/sshd_config RSAAuthentication yes PubkeyAuthentication yes 重启ssh服务 setenforce 0 service sshd restart setenforce 1 防止自动断开编辑客户端(ubuntu): /etc/ssh/ssh_config ServerAliveInterval 50 ServerAliveCountMax 3 sudo service sshd restart 注意，非sshd_config(服务器配置) Docker安装 Remove old version 1234sudo yum remove docker \ docker-common \ docker-selinux \ docker-engine Install using the repository 123456789sudo yum install -y yum-utils \ device-mapper-persistent-data \ lvm2sudo yum-config-manager \ --add-repo \ https://download.docker.com/linux/centos/docker-ce.reposudo yum install docker-ce 检验 12sudo systemctl start dockersudo docker run hello-world 更新CentOS123456789# 备份mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup# 使用腾讯云sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.reposudo yum clean allsudo yum makecachesudo yum -y update 镜像管理 images docker images 查看 run 的 –name 参数会修改这里的名字?配置容器名 docker rmi IMAGE-NAME容器管理 docker ps查看正在运行的容器 docker stop ... sudo docker container pruneRemove all stopped containers sudo docker exec -it container-name /bin/bash进入正在运行的容器 保存容器 commit 退出镜像 sudo docker ps -l获得CONTAINER ID sudo docker commit id name:tags 使用ubuntu镜像 docker pull ubuntu sudo docker run -t -i ubuntu:tags /bin/zsh cat /etc/lsb-release基础软件 apt install wget git iproute2 openssh-server vim service ssh start下一次进入docker，不会自动启动 这里犯傻了，直接用宿主的Mysql就可以了，docker数据持久化很麻烦。 apt install mysql-server默认无密码 service mysql restart update user set authentication_string=PASSWORD(&#39;...&#39;) where user=&#39;root&#39;; jdk tar zxvf ... vim /etc/profile12345# jdk envexport JAVA_HOME=/home/coeo/IDE/java/jdk1.8.0_201export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:$PATH Mysql删除自带的 mariadb rpm -qa|grep mariadb (mysql) rpm -e --nodeps ... 安装 Mysql5.7配置yum源 MySQL Yum Repository https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm wget ... 安装源sudo rpm -ivh ... 选择安装5.7版本 yum repolist all | grep mysql yum-config-manager --disable mysql80-community yum-config-manager --enable mysql57-community 安装Mysql sudo yum install mysql-community-server systemctl status mysqld.service systemctl start mysqld.service 密码配置 新版本的Mysql会自动创建一个初始密码 sudo grep &#39;temporary password&#39; /var/log/mysqld.log 修改密码，mysql里面: set password for &#39;root&#39;@&#39;localhost&#39; = password(&#39;...&#39;);]]></content>
+    <title><![CDATA[Docker 配置]]></title>
+    <url>%2F2019%2F09%2F10%2Flinux-docker-1%2F</url>
+    <content type="text"><![CDATA[镜像管理 images docker images 查看 run 的 –name 参数会修改这里的名字?配置容器名 docker rmi IMAGE-NAME 容器管理 docker ps查看正在运行的容器 docker stop ... sudo docker container pruneRemove all stopped containers sudo docker exec -it container-name /bin/bash进入正在运行的容器 docker rename ... 保存容器 commit 退出镜像 sudo docker ps -l获得CONTAINER ID sudo docker commit id name:tags 使用ubuntu镜像 docker pull ubuntu sudo docker run -t -i ubuntu:tags /bin/zsh cat /etc/lsb-release基础软件 apt install wget git iproute2 openssh-server vim service ssh start下一次进入docker，不会自动启动 这里犯傻了，直接用宿主的Mysql就可以了，docker数据持久化很麻烦。 apt install mysql-server默认无密码 service mysql restart update user set authentication_string=PASSWORD(&#39;...&#39;) where user=&#39;root&#39;; jdk tar zxvf ... vim /etc/profile12345# jdk envexport JAVA_HOME=/home/coeo/IDE/java/jdk1.8.0_201export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:$PATH]]></content>
       <categories>
         <category>Ops</category>
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>CentOS</tag>
         <tag>Docker</tag>
       </tags>
   </entry>
@@ -63,13 +62,14 @@
   </entry>
   <entry>
     <title><![CDATA[CentOS 配置]]></title>
-    <url>%2F2019%2F09%2F10%2Flinux-docker-1%2F</url>
-    <content type="text"><![CDATA[镜像管理 images docker images 查看 run 的 –name 参数会修改这里的名字?配置容器名 docker rmi IMAGE-NAME容器管理 docker ps查看正在运行的容器 docker stop ... sudo docker container pruneRemove all stopped containers sudo docker exec -it container-name /bin/bash进入正在运行的容器 docker rename ... 保存容器 commit 退出镜像 sudo docker ps -l获得CONTAINER ID sudo docker commit id name:tags 使用ubuntu镜像 docker pull ubuntu sudo docker run -t -i ubuntu:tags /bin/zsh cat /etc/lsb-release基础软件 apt install wget git iproute2 openssh-server vim service ssh start下一次进入docker，不会自动启动 这里犯傻了，直接用宿主的Mysql就可以了，docker数据持久化很麻烦。 apt install mysql-server默认无密码 service mysql restart update user set authentication_string=PASSWORD(&#39;...&#39;) where user=&#39;root&#39;; jdk tar zxvf ... vim /etc/profile12345# jdk envexport JAVA_HOME=/home/coeo/IDE/java/jdk1.8.0_201export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:$PATH]]></content>
+    <url>%2F2019%2F09%2F10%2Flinux-centos-1%2F</url>
+    <content type="text"><![CDATA[用户管理useradd {name-poi} -U -m m: create home U: create the same name group G: addition group passwd {name-poi}visudo分配 sudo 权限 Group groupadd admin usermod -G 添加附加组 newgrp g-name 更新用户组(手动编辑文件的话) 查看 cat /etc/passwd /etc/group 这里可以将用户从组中移除 防火墙 firewall firewall-cmd --state 检查是否正在运行 开启、关闭 systemctl start/stop/restart firewalld systemctl enable/disable firewalld 开机启动 应急模式（应急模式阻断所有网络连接，防止出现紧急状况） firewall-cmd --query-panic firewall-cmd --panic-on/off 端口配置 检查 firewall-cmd --query-port=80/tcp firewall-cmd --zone=public --list-ports firewall-cmd --list-services firewall-cmd --list-all 配置 firewall-cmd --add-port=80/tcp --permanent –permanent重启保留 firewall-cmd --remove-port=80/tcp firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;192.168.11.0/24&quot; port protocol=&quot;tcp&quot; port=&quot;6689&quot; accept&quot;这种需要firewall-cmd --reload 移除规则vim /etc/firewalld/zones/public.xml ssh查看登录记录 who /var/log/wtmp more /var/log/secure 修改端口 vim /etc/ssh/sshd_config 123Port 22# 可以添加多个Port 233 重启 systemctl restart sshd.service systemctl status sshd.service查看信息:error: Bind to port 233 on 0.0.0.0 failed: Permission denied 需要临时关闭SELinux SELinux getenforce查看是否启用 setenforce 0临时关闭 setenforce 1启用 iptables未使用，先略 iptables -A INPUT -s 192.168.99.0/24 -p tcp --dport 22 -j ACCEPT 永久生效 service iptables save cat /etc/sysconfig/iptables RSA vim .ssh/authorized_keys 放入 id_rsa.pub vim /etc/ssh/sshd_config RSAAuthentication yes PubkeyAuthentication yes 重启ssh服务 setenforce 0 service sshd restart setenforce 1 防止自动断开编辑客户端(ubuntu): /etc/ssh/ssh_config ServerAliveInterval 50 ServerAliveCountMax 3 sudo service sshd restart 注意，非sshd_config(服务器配置) Docker安装 Remove old version 1234sudo yum remove docker \ docker-common \ docker-selinux \ docker-engine Install using the repository 123456789sudo yum install -y yum-utils \ device-mapper-persistent-data \ lvm2sudo yum-config-manager \ --add-repo \ https://download.docker.com/linux/centos/docker-ce.reposudo yum install docker-ce 检验 12sudo systemctl start dockersudo docker run hello-world 更新CentOS123456789# 备份mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup# 使用腾讯云sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.reposudo yum clean allsudo yum makecachesudo yum -y update 镜像管理 images docker images 查看 run 的 –name 参数会修改这里的名字?配置容器名 docker rmi IMAGE-NAME容器管理 docker ps查看正在运行的容器 docker stop ... sudo docker container pruneRemove all stopped containers sudo docker exec -it container-name /bin/bash进入正在运行的容器 保存容器 commit 退出镜像 sudo docker ps -l获得CONTAINER ID sudo docker commit id name:tags 使用ubuntu镜像 docker pull ubuntu sudo docker run -t -i ubuntu:tags /bin/zsh cat /etc/lsb-release基础软件 apt install wget git iproute2 openssh-server vim service ssh start下一次进入docker，不会自动启动 这里犯傻了，直接用宿主的Mysql就可以了，docker数据持久化很麻烦。 apt install mysql-server默认无密码 service mysql restart update user set authentication_string=PASSWORD(&#39;...&#39;) where user=&#39;root&#39;; jdk tar zxvf ... vim /etc/profile12345# jdk envexport JAVA_HOME=/home/coeo/IDE/java/jdk1.8.0_201export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:$PATH Mysql删除自带的 mariadb rpm -qa|grep mariadb (mysql) rpm -e --nodeps ... 安装 Mysql5.7配置yum源 MySQL Yum Repository https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm wget ... 安装源sudo rpm -ivh ... 选择安装5.7版本 yum repolist all | grep mysql yum-config-manager --disable mysql80-community yum-config-manager --enable mysql57-community 安装Mysql sudo yum install mysql-community-server systemctl status mysqld.service systemctl start mysqld.service 密码配置 新版本的Mysql会自动创建一个初始密码 sudo grep &#39;temporary password&#39; /var/log/mysqld.log 修改密码，mysql里面: set password for &#39;root&#39;@&#39;localhost&#39; = password(&#39;...&#39;);]]></content>
       <categories>
         <category>Ops</category>
       </categories>
       <tags>
         <tag>Linux</tag>
+        <tag>CentOS</tag>
         <tag>Docker</tag>
       </tags>
   </entry>
@@ -117,8 +117,8 @@
       </categories>
       <tags>
         <tag>git</tag>
-        <tag>Tools</tag>
         <tag>svn</tag>
+        <tag>Tools</tag>
         <tag>项目管理</tag>
       </tags>
   </entry>
@@ -222,9 +222,9 @@
         <category>Web</category>
       </categories>
       <tags>
-        <tag>前端</tag>
         <tag>Http</tag>
         <tag>html</tag>
+        <tag>前端</tag>
         <tag>AJAX</tag>
       </tags>
   </entry>
@@ -236,8 +236,8 @@
         <category>Web</category>
       </categories>
       <tags>
-        <tag>Thymeleaf</tag>
         <tag>前端</tag>
+        <tag>Thymeleaf</tag>
       </tags>
   </entry>
   <entry>
