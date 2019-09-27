@@ -104,14 +104,14 @@
 
 
   <meta name="description" content="用户管理useradd {name-poi} -U -m m: create home U: create the same name group G: addition group">
-<meta name="keywords" content="Linux,CentOS,Docker">
+<meta name="keywords" content="Linux,Docker,CentOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 配置">
 <meta property="og:url" content="https://kor-coeo.github.io/2019/09/10/linux-centos-1/index.html">
 <meta property="og:site_name" content="蛍火の杜">
 <meta property="og:description" content="用户管理useradd {name-poi} -U -m m: create home U: create the same name group G: addition group">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-20T07:20:14.101Z">
+<meta property="og:updated_time" content="2019-09-26T08:02:47.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 配置">
 <meta name="twitter:description" content="用户管理useradd {name-poi} -U -m m: create home U: create the same name group G: addition group">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-20 15:20:14" itemprop="dateModified" datetime="2019-09-20T15:20:14+08:00">2019-09-20</time>
+                <time title="修改时间：2019-09-26 16:02:47" itemprop="dateModified" datetime="2019-09-26T16:02:47+08:00">2019-09-26</time>
               
             
           </span>
@@ -500,7 +500,7 @@
 <li>G: addition group</li>
 </ul>
 <a id="more"></a>
-<h2 id="passwd-name-poi"><a href="#passwd-name-poi" class="headerlink" title="passwd {name-poi}"></a>passwd {name-poi}</h2><h2 id="visudo"><a href="#visudo" class="headerlink" title="visudo"></a>visudo</h2><p>分配 sudo 权限</p>
+<h2 id="userdel-rf"><a href="#userdel-rf" class="headerlink" title="userdel -rf"></a>userdel -rf</h2><h2 id="passwd-name-poi"><a href="#passwd-name-poi" class="headerlink" title="passwd {name-poi}"></a>passwd {name-poi}</h2><h2 id="visudo"><a href="#visudo" class="headerlink" title="visudo"></a>visudo</h2><p>分配 sudo 权限</p>
 <h2 id="Group"><a href="#Group" class="headerlink" title="Group"></a>Group</h2><ul>
 <li>groupadd admin</li>
 <li>usermod -G 添加附加组</li>
@@ -612,41 +612,6 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
 <h3 id="更新CentOS"><a href="#更新CentOS" class="headerlink" title="更新CentOS"></a>更新CentOS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 备份</span><br><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br><span class="line"></span><br><span class="line"># 使用腾讯云</span><br><span class="line">sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo</span><br><span class="line"></span><br><span class="line">sudo yum clean all</span><br><span class="line">sudo yum makecache</span><br><span class="line">sudo yum -y update</span><br></pre></td></tr></table></figure>
-<h2 id="镜像管理-images"><a href="#镜像管理-images" class="headerlink" title="镜像管理 images"></a>镜像管理 images</h2><ul>
-<li><code>docker images</code> 查看<ul>
-<li>run 的 –name <del>参数会修改这里的名字?</del>配置容器名</li>
-</ul>
-</li>
-<li><code>docker rmi IMAGE-NAME</code><h2 id="容器管理"><a href="#容器管理" class="headerlink" title="容器管理"></a>容器管理</h2></li>
-<li><code>docker ps</code>查看正在运行的容器</li>
-<li><code>docker stop ...</code></li>
-<li><code>sudo docker container prune</code>Remove all stopped containers</li>
-<li><code>sudo docker exec -it container-name /bin/bash</code>进入正在运行的容器</li>
-</ul>
-<h2 id="保存容器-commit"><a href="#保存容器-commit" class="headerlink" title="保存容器 commit"></a>保存容器 commit</h2><ul>
-<li>退出镜像</li>
-<li><code>sudo docker ps -l</code>获得CONTAINER ID</li>
-<li><code>sudo docker commit id name:tags</code></li>
-</ul>
-<h2 id="使用ubuntu镜像"><a href="#使用ubuntu镜像" class="headerlink" title="使用ubuntu镜像"></a>使用ubuntu镜像</h2><ul>
-<li><code>docker pull ubuntu</code></li>
-<li><code>sudo docker run -t -i ubuntu:tags /bin/zsh</code></li>
-<li><code>cat /etc/lsb-release</code><h3 id="基础软件"><a href="#基础软件" class="headerlink" title="基础软件"></a>基础软件</h3></li>
-<li><code>apt install wget git iproute2 openssh-server vim</code></li>
-<li><code>service ssh start</code>下一次进入docker，不会自动启动</li>
-<li>这里犯傻了，直接用宿主的Mysql就可以了，docker数据持久化很麻烦。</li>
-<li><code>apt install mysql-server</code>默认无密码<ul>
-<li><code>service mysql restart</code></li>
-<li><code>update user set authentication_string=PASSWORD(&#39;...&#39;) where user=&#39;root&#39;;</code></li>
-</ul>
-</li>
-<li>jdk<ul>
-<li><code>tar zxvf ...</code></li>
-<li><code>vim /etc/profile</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># jdk env</span><br><span class="line">export JAVA_HOME=/home/coeo/IDE/java/jdk1.8.0_201</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
 <h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="删除自带的-mariadb"><a href="#删除自带的-mariadb" class="headerlink" title="删除自带的 mariadb"></a>删除自带的 mariadb</h2><ul>
 <li><code>rpm -qa|grep mariadb</code> (mysql)</li>
 <li><code>rpm -e --nodeps ...</code></li>
@@ -705,9 +670,9 @@
           
             <a href="/tags/Linux/" rel="tag"># Linux</a>
           
-            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
-          
             <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
           
         </div>
       
@@ -720,8 +685,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/04/fw-spring-4/" rel="next" title="Spring review 02 - AOP">
-                <i class="fa fa-chevron-left"></i> Spring review 02 - AOP
+              <a href="/2019/09/10/linux-centos-2/" rel="next" title="CentOS 敏捷开发管理平台搭建">
+                <i class="fa fa-chevron-left"></i> CentOS 敏捷开发管理平台搭建
               </a>
             
           </div>
@@ -730,8 +695,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/10/linux-centos-2/" rel="prev" title="CentOS 敏捷开发管理平台搭建">
-                CentOS 敏捷开发管理平台搭建 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/10/linux-docker-1/" rel="prev" title="Docker 配置">
+                Docker 配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -985,7 +950,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#用户管理"><span class="nav-number">1.</span> <span class="nav-text">用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#useradd-name-poi-U-m"><span class="nav-number">1.1.</span> <span class="nav-text">useradd {name-poi} -U -m</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#passwd-name-poi"><span class="nav-number">1.2.</span> <span class="nav-text">passwd {name-poi}</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visudo"><span class="nav-number">1.3.</span> <span class="nav-text">visudo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Group"><span class="nav-number">1.4.</span> <span class="nav-text">Group</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看-cat"><span class="nav-number">1.5.</span> <span class="nav-text">查看 cat</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#防火墙-firewall"><span class="nav-number">2.</span> <span class="nav-text">防火墙 firewall</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开启、关闭"><span class="nav-number">2.1.</span> <span class="nav-text">开启、关闭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应急模式（应急模式阻断所有网络连接，防止出现紧急状况）"><span class="nav-number">2.2.</span> <span class="nav-text">应急模式（应急模式阻断所有网络连接，防止出现紧急状况）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口配置"><span class="nav-number">2.3.</span> <span class="nav-text">端口配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh"><span class="nav-number">3.</span> <span class="nav-text">ssh</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看登录记录"><span class="nav-number">3.1.</span> <span class="nav-text">查看登录记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改端口"><span class="nav-number">3.2.</span> <span class="nav-text">修改端口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SELinux"><span class="nav-number">3.2.1.</span> <span class="nav-text">SELinux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iptables"><span class="nav-number">3.2.2.</span> <span class="nav-text">iptables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA"><span class="nav-number">3.3.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防止自动断开"><span class="nav-number">3.4.</span> <span class="nav-text">防止自动断开</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker"><span class="nav-number">4.</span> <span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">4.1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新CentOS"><span class="nav-number">4.1.1.</span> <span class="nav-text">更新CentOS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#镜像管理-images"><span class="nav-number">4.2.</span> <span class="nav-text">镜像管理 images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器管理"><span class="nav-number">4.3.</span> <span class="nav-text">容器管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存容器-commit"><span class="nav-number">4.4.</span> <span class="nav-text">保存容器 commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ubuntu镜像"><span class="nav-number">4.5.</span> <span class="nav-text">使用ubuntu镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础软件"><span class="nav-number">4.5.1.</span> <span class="nav-text">基础软件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql"><span class="nav-number">5.</span> <span class="nav-text">Mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#删除自带的-mariadb"><span class="nav-number">5.1.</span> <span class="nav-text">删除自带的 mariadb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Mysql5-7"><span class="nav-number">5.2.</span> <span class="nav-text">安装 Mysql5.7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置yum源"><span class="nav-number">5.2.1.</span> <span class="nav-text">配置yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Mysql"><span class="nav-number">5.2.2.</span> <span class="nav-text">安装Mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密码配置"><span class="nav-number">5.2.3.</span> <span class="nav-text">密码配置</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#用户管理"><span class="nav-number">1.</span> <span class="nav-text">用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#useradd-name-poi-U-m"><span class="nav-number">1.1.</span> <span class="nav-text">useradd {name-poi} -U -m</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#userdel-rf"><span class="nav-number">1.2.</span> <span class="nav-text">userdel -rf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#passwd-name-poi"><span class="nav-number">1.3.</span> <span class="nav-text">passwd {name-poi}</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visudo"><span class="nav-number">1.4.</span> <span class="nav-text">visudo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Group"><span class="nav-number">1.5.</span> <span class="nav-text">Group</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看-cat"><span class="nav-number">1.6.</span> <span class="nav-text">查看 cat</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#防火墙-firewall"><span class="nav-number">2.</span> <span class="nav-text">防火墙 firewall</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开启、关闭"><span class="nav-number">2.1.</span> <span class="nav-text">开启、关闭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应急模式（应急模式阻断所有网络连接，防止出现紧急状况）"><span class="nav-number">2.2.</span> <span class="nav-text">应急模式（应急模式阻断所有网络连接，防止出现紧急状况）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口配置"><span class="nav-number">2.3.</span> <span class="nav-text">端口配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh"><span class="nav-number">3.</span> <span class="nav-text">ssh</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看登录记录"><span class="nav-number">3.1.</span> <span class="nav-text">查看登录记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改端口"><span class="nav-number">3.2.</span> <span class="nav-text">修改端口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SELinux"><span class="nav-number">3.2.1.</span> <span class="nav-text">SELinux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iptables"><span class="nav-number">3.2.2.</span> <span class="nav-text">iptables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA"><span class="nav-number">3.3.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防止自动断开"><span class="nav-number">3.4.</span> <span class="nav-text">防止自动断开</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker"><span class="nav-number">4.</span> <span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">4.1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新CentOS"><span class="nav-number">4.1.1.</span> <span class="nav-text">更新CentOS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql"><span class="nav-number">5.</span> <span class="nav-text">Mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#删除自带的-mariadb"><span class="nav-number">5.1.</span> <span class="nav-text">删除自带的 mariadb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Mysql5-7"><span class="nav-number">5.2.</span> <span class="nav-text">安装 Mysql5.7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置yum源"><span class="nav-number">5.2.1.</span> <span class="nav-text">配置yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Mysql"><span class="nav-number">5.2.2.</span> <span class="nav-text">安装Mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密码配置"><span class="nav-number">5.2.3.</span> <span class="nav-text">密码配置</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

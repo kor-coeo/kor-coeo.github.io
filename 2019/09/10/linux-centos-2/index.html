@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="蛍火の杜">
 <meta property="og:description" content="GitGitea sudo docker pull gitea/gitea:latest sudo mkdir -p /…/…/dir sudo docker run -d –name=gitea -p 10022:22 -p 10080:3000 -v /…/…/dir:/data gitea/gitea:latest">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-23T08:56:43.320Z">
+<meta property="og:updated_time" content="2019-09-26T12:46:33.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 敏捷开发管理平台搭建">
 <meta name="twitter:description" content="GitGitea sudo docker pull gitea/gitea:latest sudo mkdir -p /…/…/dir sudo docker run -d –name=gitea -p 10022:22 -p 10080:3000 -v /…/…/dir:/data gitea/gitea:latest">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-23 16:56:43" itemprop="dateModified" datetime="2019-09-23T16:56:43+08:00">2019-09-23</time>
+                <time title="修改时间：2019-09-26 20:46:33" itemprop="dateModified" datetime="2019-09-26T20:46:33+08:00">2019-09-26</time>
               
             
           </span>
@@ -509,7 +509,9 @@
 <li>启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --detach \</span><br><span class="line">  --hostname gitlab.example.com \</span><br><span class="line">  --publish 443:443 --publish 80:80 --publish 22:22 \</span><br><span class="line">  --restart always \</span><br><span class="line">  --volume /srv/gitlab/config:/etc/gitlab \</span><br><span class="line">  --volume /srv/gitlab/logs:/var/log/gitlab \</span><br><span class="line">  --volume /srv/gitlab/data:/var/opt/gitlab \</span><br><span class="line">  gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="启动Https"><a href="#启动Https" class="headerlink" title="启动Https"></a>启动Https</h3><h4 id="Openssl-自签证书"><a href="#Openssl-自签证书" class="headerlink" title="Openssl 自签证书"></a>Openssl 自签证书</h4><ul>
+<h3 id="Docker-compose"><a href="#Docker-compose" class="headerlink" title="Docker compose"></a>Docker compose</h3><ul>
+<li>docker-compose.yml</li>
+<li><code>docker-compose up -d</code><h3 id="启动Https"><a href="#启动Https" class="headerlink" title="启动Https"></a>启动Https</h3><h4 id="Openssl-自签证书"><a href="#Openssl-自签证书" class="headerlink" title="Openssl 自签证书"></a>Openssl 自签证书</h4></li>
 <li><p>构建证书</p>
 <ul>
 <li><code>mkdir -pv /etc/pki/CA/{certs,crl,newcerts,private} &amp;&amp; touch /etc/pki/CA/{serial,index.txt} &amp;&amp; echo 01 &gt;&gt; /etc/pki/CA/serial</code></li>
@@ -522,8 +524,8 @@
 </ul>
 </li>
 <li>颁发证书<ul>
-<li><code>openssl genrsa -out httpd.key 2048</code>生成密钥</li>
-<li><code>openssl req -new -key httpd.key -out httpd.csr -extensions v3_req -config /etc/pki/openssl.cnf</code>二之一(.key)</li>
+<li><code>openssl genrsa -out httpd.key 2048</code>生成密钥,二之一(.key)</li>
+<li><code>openssl req -new -key httpd.key -out httpd.csr -extensions v3_req -config /etc/pki/openssl.cnf</code></li>
 <li><code>openssl ca -in httpd.csr -out /etc/pki/CA/certs/httpd.crt</code>二之一(.crt),颁发证书(CA服务器做的事，由于这里是自签的形式，https服务器是同一台机器)<ul>
 <li>docker容器内出现错误，修改配置文件中的默认路径: <code>vim /opt/gitlab/embedded/ssl/openssl.cnf</code></li>
 </ul>
@@ -531,12 +533,22 @@
 </ul>
 </li>
 </ul>
-<p>####</p>
-<ul>
+<h4 id="端口绑定"><a href="#端口绑定" class="headerlink" title="端口绑定"></a>端口绑定</h4><ul>
+<li><code>gitlab-ctl reconfigure</code></li>
 <li><p>vim /etc/gitlab/gitlab.rb</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># docker内部会根据这里创建端口。</span><br><span class="line"># 使用http时，容器ip:port,宿主ip:映射出来的port,公网ip:公网port均可访问</span><br><span class="line">external_url &apos;https://ip:port&apos;</span><br><span class="line"></span><br><span class="line">nginx[&apos;ssl_certificate&apos;] = &quot;/etc/gitlab/ssl/cyan.crt&quot;</span><br><span class="line">nginx[&apos;ssl_certificate_key&apos;] = &quot;/etc/gitlab/ssl/cyan.key&quot;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>By default NGINX will listen on the port specified in external_url or implicitly use the right port (80 for HTTP, 443 for HTTPS). If you are running GitLab behind a reverse proxy, you may want to override the listen port to something else. For example, to use port 8081:<code>nginx[&#39;listen_port&#39;] = 8081</code></p>
+<ul>
+<li>如果在端口映射处(如Ngnix反向代理)做的ssl，而内部采用的是http，需要禁用gitlab自带的<code>nginx[&#39;listen_https&#39;] = false</code></li>
+</ul>
+</li>
+<li><code>gitlab_rails[&#39;gitlab_shell_ssh_port&#39;] = 233</code>改变web界面显示的git(ssh)端口，似乎内部实现还是22端口?</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>持久化数据备份<ul>
+<li>tar cvpf 需要 sudo 和 p 参数，保留权限，不然会无法启动</li>
+</ul>
 </li>
 </ul>
 <h1 id="jira"><a href="#jira" class="headerlink" title="jira"></a>jira</h1><h2 id="使用-Docker-安装"><a href="#使用-Docker-安装" class="headerlink" title="使用 Docker 安装"></a>使用 Docker 安装</h2><ul>
@@ -586,8 +598,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/10/linux-centos-1/" rel="next" title="CentOS 配置">
-                <i class="fa fa-chevron-left"></i> CentOS 配置
+              <a href="/2019/09/04/fw-spring-4/" rel="next" title="Spring review 02 - AOP">
+                <i class="fa fa-chevron-left"></i> Spring review 02 - AOP
               </a>
             
           </div>
@@ -596,8 +608,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/10/linux-docker-1/" rel="prev" title="Docker 配置">
-                Docker 配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/10/linux-centos-1/" rel="prev" title="CentOS 配置">
+                CentOS 配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -851,7 +863,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git"><span class="nav-number">1.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitea"><span class="nav-number">1.1.</span> <span class="nav-text">Gitea</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http协议下免密码-伪"><span class="nav-number">1.1.1.</span> <span class="nav-text">http协议下免密码(伪)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab"><span class="nav-number">1.2.</span> <span class="nav-text">Gitlab</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动Https"><span class="nav-number">1.2.1.</span> <span class="nav-text">启动Https</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Openssl-自签证书"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Openssl 自签证书</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jira"><span class="nav-number">2.</span> <span class="nav-text">jira</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Docker-安装"><span class="nav-number">2.1.</span> <span class="nav-text">使用 Docker 安装</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git"><span class="nav-number">1.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitea"><span class="nav-number">1.1.</span> <span class="nav-text">Gitea</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http协议下免密码-伪"><span class="nav-number">1.1.1.</span> <span class="nav-text">http协议下免密码(伪)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab"><span class="nav-number">1.2.</span> <span class="nav-text">Gitlab</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-compose"><span class="nav-number">1.2.1.</span> <span class="nav-text">Docker compose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动Https"><span class="nav-number">1.2.2.</span> <span class="nav-text">启动Https</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Openssl-自签证书"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Openssl 自签证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#端口绑定"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">端口绑定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">1.2.3.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jira"><span class="nav-number">2.</span> <span class="nav-text">jira</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Docker-安装"><span class="nav-number">2.1.</span> <span class="nav-text">使用 Docker 安装</span></a></li></ol></li></ol></div>
             
 
           </div>
